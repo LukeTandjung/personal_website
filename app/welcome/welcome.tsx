@@ -115,7 +115,7 @@ export function Welcome() {
                       className="flex p-3 flex-col justify-center items-start gap-3 self-stretch rounded-sm bg-panel-alt/75"
                     >
                       <header>
-                        <h3 className="font-mono font-semibold text-base text-char-default">
+                        <h3 className="font-serif font-normal text-base text-char-default">
                           {`${key.slice(0, 1).toUpperCase()}${key.slice(1, key.length)}`}
                         </h3>
                       </header>
