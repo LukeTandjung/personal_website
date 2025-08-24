@@ -1,15 +1,62 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Fonts */
+  --font-display: "Instrument Serif", serif;
+  --font-serif: "IBM Plex Serif", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Kanagawa colour palette */
+  --color-*: initial;
+
+  /* This is for background colors! */
+  --color-panel-default: #1f1f28;
+  --color-panel-alt: #16161d;
+  --color-panel-select: #223249;
+
+  --color-char-default: #dcd7ba;
+  --color-char-alt: #727169;
+  --color-line-unfocus: #54546d;
+  --color-line-focus: #7e9cd8;
+  --color-warning: #c0a36e;
+  --color-urgent: #ffa066;
+  --color-error: #c34043;
+  --color-ok: #76946a;
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  /* This is the background image of the website! */
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%),
+    url("/images/website_background.png") lightgray 50% / cover no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  @apply min-h-dvh;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+.root {
+  isolation: isolate;
+}
+
+.embla {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.embla__container {
+  display: flex;
+  align-items: stretch;
+  border-radius: 2px;
+}
+.embla__slide {
+  display: flex;
+  flex: 0 0 50%;
+  min-width: 0;
+  margin-left: 6px;
+  margin-right: 6px;
 }
