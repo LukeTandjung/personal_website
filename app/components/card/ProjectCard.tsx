@@ -10,6 +10,7 @@ export function ProjectCard({
   image_url,
   description,
   project_url,
+  className,
 }: Project & { className?: string }): React.ReactElement {
   // These variables check if image and project urls are present!
   const has_image_src: Boolean = image_url != null && image_url !== "";
@@ -37,7 +38,7 @@ export function ProjectCard({
   }, [image_url]);
 
   return (
-    <div className="embla__slide">
+    <div className={className}>
       <div
         id={`${name}-project-card`}
         className="flex w-full h-full p-3 flex-col justify-start items-start gap-3 self-stretch rounded-sm bg-panel-alt/75"
