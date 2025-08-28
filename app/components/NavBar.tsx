@@ -1,8 +1,7 @@
 import * as React from "react";
-import { type Section, type Contact, type Common } from "types";
+import { type Section, type Common } from "types";
 import { NavigationMenu } from "@base-ui-components/react/navigation-menu";
-import { Menu } from "@base-ui-components/react/menu";
-import { PhoneIcon } from "@heroicons/react/16/solid";
+import { ContactButton } from "./button/ContactButton";
 
 export function NavBar({
   commonEn,
@@ -18,7 +17,7 @@ export function NavBar({
   return (
     <nav
       id="nav-bar"
-      className="sticky top-6 z-50 flex items-start shrink-0 justify-between h-12 w-full"
+      className="sticky top-6 z-50 flex items-start shrink-0 justify-between h-12 w-full lg:flex-row"
     >
       <NavigationMenu.Root className="flex px-3 py-2 items-center gap-4 rounded-lg bg-panel-default">
         <NavigationMenu.List className="flex p-0 items-center gap-4">
@@ -38,36 +37,18 @@ export function NavBar({
           ))}
         </NavigationMenu.List>
       </NavigationMenu.Root>
-      <Menu.Root modal={false}>
-        <Menu.Trigger className="flex p-2 items-center gap-2 rounded-lg border border-solid border-line-unfocus bg-panel-select">
-          <PhoneIcon className="size-4 text-char-default" />
-          <span className="font-mono font-medium text-base text-char-default">
-            Contacts
-          </span>
-        </Menu.Trigger>
-        <Menu.Portal>
-          <Menu.Positioner align="start" sideOffset={4}>
-            <Menu.Popup className="flex p-2 flex-col items-start gap-2 self-stretch rounded-lg bg-panel-select min-w-[117px]">
-              {commonEn.contacts.map(
-                ({ name, Icon, href }: Contact, index: number) => (
-                  <Menu.Item
-                    onClick={() => {
-                      window.location.assign(href);
-                    }}
-                    key={index}
-                    className="flex p-0 items-center gap-2 self-stretch"
-                  >
-                    <Icon className="size-4 text-char-default" />
-                    <span className="font-mono font-medium text-base text-char-default">
-                      {`${name.slice(0, 1).toUpperCase()}${name.slice(1, name.length)}`}
-                    </span>
-                  </Menu.Item>
-                ),
-              )}
-            </Menu.Popup>
-          </Menu.Positioner>
-        </Menu.Portal>
-      </Menu.Root>
+      <div className="hidden sm:block">
+        <ContactButton
+          commonEn={commonEn}
+          className="flex p-2 items-center gap-2 rounded-lg border border-solid border-line-unfocus bg-panel-select"
+        />
+      </div>
+      <div className="sm:hidden">
+        <ContactButton
+          commonEn={commonEn}
+          className="fixed bottom-6 left-6 z-50 flex p-2 items-center gap-2 rounded-lg border border-solid border-line-unfocus bg-panel-select shadow-lg"
+        />
+      </div>
     </nav>
   );
 }

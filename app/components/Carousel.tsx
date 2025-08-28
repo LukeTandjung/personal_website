@@ -20,12 +20,19 @@ export function Carousel({
   const [emblaRef] = useEmblaCarousel({ loop: true }, [autoScroll.current]);
 
   return (
-    <div className="embla" ref={emblaRef}>
-      <div className="embla__container">
+    <React.Fragment>
+      <div className="embla hidden sm:block" ref={emblaRef}>
+        <div className="embla__container">
+          {commonEn.projects.map((props: Project, index: number) => (
+            <ProjectCard key={index} {...props} className="embla__slide" />
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col gap-3 sm:hidden">
         {commonEn.projects.map((props: Project, index: number) => (
-          <ProjectCard key={index} {...props} className="embla__slide" />
+          <ProjectCard key={index} {...props} className="w-full" />
         ))}
       </div>
-    </div>
+    </React.Fragment>
   );
 }
