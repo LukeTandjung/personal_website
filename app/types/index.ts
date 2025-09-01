@@ -1,5 +1,6 @@
 export type {
   Section,
+  Tool,
   Contact,
   Interest,
   TechStack,

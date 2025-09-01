@@ -2,12 +2,13 @@ import * as React from "react";
 import { type Article } from "types";
 import { Separator } from "@base-ui-components/react/separator";
 import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
+import { Link } from "react-router";
 
 export function ArticleCard({
   title,
   description,
   meta_data,
-  article_url,
+  article_index,
 }: Article): React.ReactElement {
   return (
     <div
@@ -38,9 +39,9 @@ export function ArticleCard({
         <span className="font-mono font-medium text-sm text-char-alt">
           {meta_data}
         </span>
-        <a href={article_url}>
+        <Link to={`/articles/${article_index}/part/0`}>
           <OpenInNewWindowIcon className="size-4 text-char-alt" />
-        </a>
+        </Link>
       </footer>
     </div>
   );

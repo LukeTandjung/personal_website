@@ -11,6 +11,8 @@
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-beta.2",
     "@heroicons/react": "^2.2.0",
+    "@myriaddreamin/typst.react": "^0.6.1-rc3",
+    "@myriaddreamin/typst.ts": "^0.6.1-rc3",
     "@radix-ui/react-icons": "^1.3.2",
     "@react-router/node": "^7.7.1",
     "@react-router/serve": "^7.7.1",

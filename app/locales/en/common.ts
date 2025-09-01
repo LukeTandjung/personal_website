@@ -3,11 +3,19 @@ import {
   CpuChipIcon,
   CircleStackIcon,
   LockClosedIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  Bars3Icon,
 } from "@heroicons/react/16/solid";
 import { GitHubLogoIcon, EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 export const commonEn: Common = {
   nav: [{ name: "about" }, { name: "projects" }, { name: "articles" }],
+  tool: [
+    { name: "back", Icon: ArrowLeftIcon },
+    { name: "next", Icon: ArrowRightIcon },
+    { name: "menu", Icon: Bars3Icon },
+  ],
   contacts: [
     {
       name: "github",
@@ -76,11 +84,21 @@ export const commonEn: Common = {
   ],
   articles: [
     {
+      title:
+        "From Blocks to Buttons: Minecraft Skeuomorphic Principles Applied to UI Design.",
+      description: `In this multiple part article series, we examine how
+      Minecraft building principles can be translated into UI design principles.
+      We create a UI design system from these principles.`,
+      meta_data: "1/2 parts done, 5 mins each",
+      article_index: 0,
+    },
+    {
       title: "A somewhat accessible introduction to Zero Knowledge Proofs",
       description: `In this multiple part article series, we learn about the
       inner workings of a ZKP in an intuitive yet rigorous manner, eventually
       building up to writing an basic ZKP from scratch.`,
       meta_data: "In progress",
+      article_index: 1,
     },
   ],
 };
