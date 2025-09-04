@@ -2,16 +2,30 @@ import * as React from "react";
 import { type Tool, type Common } from "types";
 import { Toolbar } from "@base-ui-components/react/toolbar";
 import { ContactButton } from "../button/ContactButton";
+import { Effect, Match } from "effect";
 
 export function ToolBar({
   commonEn,
   handleToolTrigger,
+  back_ref,
+  next_ref,
 }: {
   commonEn: Common;
   handleToolTrigger: (
     name: Tool["name"],
   ) => React.MouseEventHandler<HTMLButtonElement>;
+  back_ref: React.Ref<HTMLButtonElement | null>;
+  next_ref: React.Ref<HTMLButtonElement | null>;
 }): React.ReactElement {
+  const getButtonRef = (name: Tool["name"]) => {
+    return Match.value(name).pipe(
+      Match.withReturnType<React.Ref<HTMLButtonElement | null> | undefined>(),
+      Match.when("back", () => back_ref),
+      Match.when("next", () => next_ref),
+      Match.orElse(() => undefined),
+    );
+  };
+
   return (
     <nav
       id="tool-bar"
@@ -22,6 +36,7 @@ export function ToolBar({
           {commonEn.tool.map(({ name, Icon }: Tool, index: number) => (
             <Toolbar.Button
               key={index}
+              ref={getButtonRef(name)}
               onClick={handleToolTrigger(name)}
               className="flex px-2 py-1 items-start gap-0 rounded-sm bg-panel-default hover:bg-panel-select"
             >

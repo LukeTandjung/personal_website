@@ -1,11 +1,16 @@
 import * as React from "react";
 import type { Route } from "./+types/articles";
 import { useNavigate, useParams, type NavigateFunction } from "react-router";
-import { type Tool } from "types";
+import { type Tool, type Article } from "types";
 import { ToolBar } from "components";
 import { commonEn } from "locales";
-import { match, P } from "ts-pattern";
-import { TypstDocument } from "@myriaddreamin/typst.react";
+import { Effect, Match } from "effect";
+import {
+  fetchArticle,
+  FetchArticleError,
+  extractArticle,
+  transformArticle,
+} from "effects";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -15,90 +20,119 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Articles() {
-  // Initialises three hooks
+  // Initialises two hooks for React Router navigation and grabbing URL params.
   const navigate: NavigateFunction = useNavigate();
   const { index, part } = useParams();
 
-  // Tracks the current article and the part of the article user is looking at via useMemo
-  const [article, setArticle] = React.useState<{
-    index: number | null;
-    part: number | null;
-    source: Uint8Array;
-  }>({
-    index: null,
-    part: null,
-    source: new Uint8Array(0),
-  });
+  // Initialises two refs for the backward and forward page button.
+  const back_ref = React.useRef<HTMLButtonElement>(null);
+  const next_ref = React.useRef<HTMLButtonElement>(null);
 
-  // This state tracks for mounting under SSR rendering
-  const [mounted, setMounted] = React.useState<boolean>(false);
+  // Tracks the current article and the part of the article user is looking at via useMemo.
+  const [article, setArticle] = React.useState<{
+    index: Article["article_index"];
+    part: Article["parts"][number];
+    source: string;
+  }>({
+    index: undefined,
+    part: 0,
+    source: "",
+  });
 
   const handleToolTrigger = (
     name: Tool["name"],
   ): React.MouseEventHandler<HTMLButtonElement> => {
     return () => {
-      match({ name })
-        .returnType<void>()
-        .with({ name: "menu" }, () => {
-          navigate("/");
-        })
-        .with(
-          {
-            name: P.union("back", "next"),
-            article: { index: P.number, part: P.number },
-          },
-          ({ name, article }) => {
-            const nextPart =
-              name === "back" ? article.part - 1 : article.part + 1;
-            navigate(`/articles/${article.index}/part/${nextPart}`);
-          },
-        )
-        .otherwise(() => {
-          navigate("/");
-        });
+      const nav_invoke: void | Promise<void> = Match.value(name).pipe(
+        Match.withReturnType<void | Promise<void>>(),
+        Match.when("menu", () => navigate("/")),
+        Match.when(Match.is("back", "next"), () => {
+          navigate(
+            `/articles/${article.index}/part/${name === "back" ? article.part - 1 : article.part + 1}`,
+          );
+        }),
+        Match.exhaustive,
+      );
+
+      nav_invoke;
     };
   };
-  React.useEffect(() => {
-    TypstDocument.setWasmModuleInitOptions({
-      beforeBuild: [],
-      getModule: () =>
-        "/node_modules/@myriaddreamin/typst-ts-renderer/pkg/typst_ts_renderer_bg.wasm",
-    });
-
-    setMounted(true);
-  }, []);
 
   React.useEffect(() => {
-    if (
-      (index !== undefined || index !== null) &&
-      (part !== undefined || part !== null)
-    ) {
-      (async () => {
-        const source: ArrayBuffer | Uint8Array<ArrayBufferLike> = await fetch(
-          `/articles/${index}/${part}/main.in`,
-        ).then((response) => response.arrayBuffer());
-
-        setArticle({
-          index: Number(index),
-          part: Number(part),
-          source: new Uint8Array(source),
-        });
-      })();
+    if (index != null && part != null) {
+      setArticle({ ...article, index: Number(index), part: Number(part) });
     }
   }, [index, part]);
 
+  React.useEffect(() => {
+    let cancelled = false;
+
+    if (article.index != null && article.part != null) {
+      // The first half of the logic disables the forward and backward ref if necessary.
+      const article_parts: Array<number> | undefined = commonEn.articles.find(
+        (article_object: Article) =>
+          article_object.article_index === article.index,
+      )?.parts;
+
+      if (article_parts != null && back_ref.current !== null) {
+        if (article.part === article_parts.at(0)) {
+          back_ref.current.setAttribute("hidden", "true");
+        } else {
+          back_ref.current.removeAttribute("hidden");
+        }
+      }
+
+      if (article_parts != null && next_ref.current !== null) {
+        if (article.part === article_parts.at(-1)) {
+          next_ref.current.setAttribute("hidden", "true");
+        } else {
+          next_ref.current.removeAttribute("hidden");
+        }
+      }
+
+      // The second half of the logic inside here handles article fetching and ETL to paint the page!
+      Effect.runPromise(
+        fetchArticle(article.index, article.part).pipe(
+          Effect.filterOrFail(
+            (response) => response.ok,
+            () => new FetchArticleError(),
+          ),
+          Effect.flatMap(extractArticle),
+          Effect.flatMap((html) => transformArticle(html, cancelled, article)),
+          Effect.tap((updated) => Effect.sync(() => setArticle(updated))),
+          Effect.catchTags({
+            FetchArticleError: () =>
+              Effect.succeed(
+                "This article either does not exist, or the corresponding part of this article has not been published yet, Stay tuned!",
+              ),
+            ExtractArticleError: () =>
+              Effect.succeed(
+                "There was a problem extracting the text of the article.",
+              ),
+            TransformArticleError: () =>
+              Effect.succeed(
+                "There was a problem transforming the text of the article.",
+              ),
+          }),
+        ),
+      );
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, [article.index, article.part]);
+
   return (
-    <div className="h-full p-6 gap-6">
-      <ToolBar {...{ commonEn, handleToolTrigger }} />
-      <div className="h-full px-[5vw] mt-4">
-        {mounted && article.source ? (
-          <TypstDocument
-            fill="#343541"
-            artifact={article.source}
-            format="json"
-          />
-        ) : null}
-      </div>
+    <div className="flex flex-col items-center justify-center h-full p-6 gap-4">
+      <ToolBar {...{ commonEn, handleToolTrigger, back_ref, next_ref }} />
+      {article.source ? (
+        <div
+          id="article-content-card"
+          className="flex p-5 justify-center items-center flex-col sm:max-w-3/4 lg:max-w-5/8 rounded-lg bg-panel-default/75"
+          dangerouslySetInnerHTML={{ __html: article.source }}
+        />
+      ) : null}
     </div>
   );
 }

@@ -40,6 +40,7 @@ export interface Article {
   description: string;
   meta_data: string;
   article_index?: number | undefined;
+  parts: Array<number>;
 }
 
 export interface Common {

@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="flex flex-col gap-4">
+      <h1 class="font-serif font-medium text-2xl text-char-default">
+        From Blocks to Buttons: Skeuomorphic Principles from Minecraft Building
+        Applied to UI Design
+      </h1>
+      <blockquote
+        class="flex justify-center my-4 font-mono font-normal text-sm text-char-alt"
+      >
+        …A teenage boy obsessed with minecraft, what is new?
+      </blockquote>
+      <p class="font-mono font-normal text-base text-char-default">
+        I spent most of my teenage years making minecraft builds in creative
+        servers. With enough time and practice, I started making some nice
+        builds.
+      </p>
+      <figure class="typst flex flex-col gap-2" data-numbering="none">
+        <div class="grid grid-cols-[2fr_1fr] grid-rows-[auto] gap-2">
+          <img
+            src="/assets/minecraft_build_one.jpg"
+            class="typst-image w-full"
+            loading="lazy"
+          />
+          <img
+            src="/assets/minecraft_build_two.png"
+            class="typst-image w-[90%]"
+            loading="lazy"
+          />
+        </div>
+        <figcaption
+          class="typst-caption font-mono font-normal text-sm text-char-alt"
+        >
+          Most of my builds were lost to time.
+        </figcaption>
+      </figure>
+      <p class="font-mono font-normal text-base text-char-default">
+        You can imagine that when I first got into software engineering, and
+        started designing my own user interfaces, I had the horrifically
+        misguided yet not entirely unreasonable impression that I would have an
+        easier time because of basic design foundations I had established in my
+        earlier years.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        This could not have been farther from the truth. My first attempt at UI
+        design was quite ghastly.
+      </p>
+      <figure class="typst flex flex-col gap-2" data-numbering="none">
+        <div class="grid grid-cols-5 grid-rows-[auto] gap-2">
+          <img
+            src="/assets/horrible_ui_three.png"
+            class="typst-image w-full"
+            loading="lazy"
+          />
+          <img
+            src="/assets/horrible_ui_one.png"
+            class="typst-image w-full"
+            loading="lazy"
+          />
+          <img
+            src="/assets/horrible_ui_two.png"
+            class="typst-image w-full"
+            loading="lazy"
+          />
+          <img
+            src="/assets/horrible_ui_four.png"
+            class="typst-image w-full"
+            loading="lazy"
+          />
+          <img
+            src="/assets/horrible_ui_five.png"
+            class="typst-image w-full"
+            loading="lazy"
+          />
+        </div>
+        <figcaption
+          class="typst-caption font-mono font-normal text-sm text-char-alt"
+        >
+          Back when Luke didn't know about Figma auto-layout, groupings, or
+          WAI-ARIA.
+        </figcaption>
+      </figure>
+      <p class="font-mono font-normal text-base text-char-default">
+        It’s been a few years since that first UI design. Since then, I’ve taken
+        several more cracks at it, and have made some progress. Heck, the
+        designs for my personal website was the first time I didn’t violently
+        convulse at how ugly it looked. I was even slightly proud of it!
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        Even so, I couldn't help, but lament.
+      </p>
+      <blockquote
+        class="flex justify-center my-4 font-mono font-normal text-sm text-char-alt"
+      >
+        …Was none of my minecraft building skills transferrable to UI design?
+      </blockquote>
+      <p class="font-mono font-normal text-base text-char-default">
+        It wasn't until I got nerd-sniped into Linux ricing did I start
+        attempting to answer this question again.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        The catalyst for getting sucked into Linux ricing was finding my old
+        2017 Macbook Air I had used in high school. This toaster had seen better
+        days, and at that point, I was not even sure if it was possible to
+        update it to MacOS Sequoia 15 without it spontaneously bursting into
+        flames. So I made the executive decision to strip MacOS from it and
+        install the NixOS Linux distribution on it.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        The term “ricing” was a holdover term from the car enthusiast scene,
+        which stood for “Race Inspired Cosmetic Enhancement”. It was used to
+        refer to cosmetic car modifications that made the car look like it ran
+        faster (like a car spoiler). In the same sense, Linux ricing refers to
+        making your Linux setup look pretty to impress onlookers sufficiently,
+        so that they forgot that you probably installed it on your toaster to
+        get some extra juice out of it.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        I thorougly enjoyed ricing my Macbook Air. I enjoyed it so much that I
+        went through the painstaking process of doing it on my Mac Mini.
+      </p>
+      <figure class="typst" data-numbering="none">
+        <img src="/assets/mac_rice.png" className="typst-image w-full" />
+      </figure>
+      <p class="font-mono font-normal text-base text-char-default">
+        It was during this particular rice that I had a spark of inspiration:
+      </p>
+      <blockquote
+        class="flex justify-center my-4 font-mono font-normal text-sm text-char-alt"
+      >
+        …Is Linux ricing the missing piece bringing minecraft and UI design?
+      </blockquote>
+      <p class="font-mono font-normal text-base text-char-default">
+        Let’s start with how minecraft building design works.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        A minecraft builder at core aims to build a creative setting that is
+        plausibly realistic. My favourite example of this is a factory built
+        from musical instruments, built by Blockworks Inc.
+      </p>
+      <figure class="typst flex justify-center my-4" data-numbering="none">
+        <img src="/assets/aeternium.jpg" className="typst-image w-[85%]" />
+      </figure>
+      <p class="font-mono font-normal text-base text-char-default">
+        In such a vast sandbox game unconstrained by material reality, it might
+        seem alittle unimaginative to guide our building process through the
+        lens of realism. But it is exactly this lens of “can this plausibly
+        exist” that allows for <strong>secondary belief</strong> when looking at
+        a minecraft build, lending to greater immersion in the more fantastical
+        parts of the build.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        <strong>Definition</strong> (Secondary belief): A term coined by
+        Tolkien, it refers to the genuine, immersive belief a reader experiences
+        within a fictional world that allows them to accept its internal reality
+        and fantastical elements. This hinges on having consistent and deep
+        rules set by the author, producing immersion that goes beyond suspense
+        of disbelief.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        To this end, Minecraft builders layer realistic visual cues. If you come
+        from a design background, this might sound familiar to you. Minecraft
+        building design sounds similar, in principle, to
+        <strong>skeumorphism</strong>.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        <strong>Definition</strong> (Skeumorphism): A design style with visual
+        cues (or affordances) that imitate the texture, shape, or function of
+        physical objects.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        We can draw parallels between Minecraft builders and UI designers:
+      </p>
+      <ul>
+        <li
+          class="font-mono font-normal text-base text-char-default list-disc list-inside"
+        >
+          Minecraft builders layer realistic visual cues in an abstract digital
+          medium (blocks) to generate secondary belief in their setting, then
+          add in their own creative elements.
+        </li>
+        <li
+          class="font-mono font-normal text-base text-char-default list-disc list-inside"
+        >
+          UI designers layer skeumorphic cues in an abstract digital medium
+          (screen plane) to anchor user understanding, then add in their own
+          brand elements.
+        </li>
+      </ul>
+      <p class="font-mono font-normal text-base text-char-default">
+        While helpful, this comparison is still abstract. After all,
+      </p>
+      <blockquote
+        class="flex justify-center my-4 font-mono font-normal text-sm text-char-alt"
+      >
+        …what does layering "cues" look like in practice?
+      </blockquote>
+      <p class="font-mono font-normal text-base text-char-default">
+        In Minecraft builds, it shows up as a handful of building principles we
+        utilise to organise these visual cues, and make the build look pretty.
+        While the epistemic origins of such principles are unknown, being
+        informally taught and passed down from builder to builder, it does bear
+        an uncanny resemblance to a fusion of Gestalt design principles and art
+        theory. Some of the more relevant Minecraft building principles that
+        have interesting stylistic implications to UI design are as follows:
+      </p>
+      <h2 class="font-serif font-medium text-xl text-char-default">Depth</h2>
+      <p class="font-mono font-normal text-base text-char-default">
+        A wall in Minecraft with depth almost always looks better than a flat
+        wall. However, there are challenges when it comes to translating this
+        idea from a 3D voxel space to a 2D screen plane. Thankfully, there are
+        multiple way to create an illusion of depth within flat walls in
+        Minecraft.
+      </p>
+      <ol>
+        <li
+          value="1"
+          class="font-mono font-normal text-base text-char-default list-decimal list-inside"
+        >
+          <strong>Shadows</strong>: This is something already utilised in
+          skeumorphic or neumorphic design styles.
+        </li>
+        <li
+          value="2"
+          class="font-mono font-normal text-base text-char-default list-decimal list-inside"
+        >
+          <strong>Colour</strong>: Colours of darker values for parts of the
+          wall you want to give the illusion of depth for. This naturally gives
+          rise to a colour hierarchy, Unlike traditional UI design where colour
+          hierarchy is used solely for semantic prioritisation, we now use it to
+          imply physical depth in a 2D screen.
+        </li>
+      </ol>
+      <h2 class="font-serif font-mediumn text-xl text-char-default">Colour</h2>
+      <p class="font-mono font-normal text-base text-char-default">
+        A block palette is to your Minecraft build what a colour palette is to a
+        UI design. A popular colour palette for UI design is the 60-30-10 colour
+        palette.
+      </p>
+      <figure class="flex justify-center my-4">
+        <img src="/assets/60_30_10.png" class="typst-image w-[60%]" />
+      </figure>
+      <p class="font-mono font-normal text-base text-char-default">
+        However, a Minecraft build usually has a larger palette than the
+        60-30-10 colour palette. While a build is doable with a 60-30-10 colour
+        palette, Minecraft builds in general look better with more colour
+        variation. A more suitable colour palette that would translate better
+        from Minecraft builds to UI design would be the base16 or even the
+        base24 colour palette. This is a colour palette type that is often used
+        in Linux desktop ricing.
+      </p>
+      <h2 class="font-serif font-medium text-xl text-char-default">Texture</h2>
+      <p class="font-mono font-normal text-base text-char-default">
+        Texture gives any surface a material quality to it, influencing the feel
+        of the build. From the texture of a single block to creating a specific
+        texture like gradients with multiple blocks, this translates well in UI
+        design! One way we can utilise this is to create grainy background
+        gradients for our UI.
+      </p>
+      <p class="font-mono font-normal text-base text-char-default">
+        To summarise the Minecraft building design logic, Minecraft building
+        principles are organised to produce realistic cues, which provides a
+        strong foundation for secondary belief in this creative setting. We now
+        have the foundations to attempt to create a design system inspired from
+        Minecraft builds.
+      </p>
+    </div>
+  </body>
+</html>

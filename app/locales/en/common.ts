@@ -2,7 +2,7 @@ import { type Common } from "types";
 import {
   CpuChipIcon,
   CircleStackIcon,
-  LockClosedIcon,
+  LanguageIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
   Bars3Icon,
@@ -39,9 +39,9 @@ export const commonEn: Common = {
     mind.`,
   ],
   interests: [
-    { name: "Large Language Models", Icon: CpuChipIcon },
+    { name: "Large Language Models", Icon: LanguageIcon },
     { name: "Distributed Systems", Icon: CircleStackIcon },
-    { name: "Zero Knowledge Proofs", Icon: LockClosedIcon },
+    { name: "Computer Architecture", Icon: CpuChipIcon },
   ],
   stack: {
     "front-end": [
@@ -51,7 +51,7 @@ export const commonEn: Common = {
       "Bun",
       "BaseUI",
       "React Router",
-      "Expo",
+      "Effect",
     ],
     "back-end": ["Python", "Rust", "C", "FastAPI", "Actix", "Tauri"],
     infrastructure: ["Postgres", "Docker", "Terraform", "AWS", "Nix"],
@@ -68,11 +68,10 @@ export const commonEn: Common = {
       created by querying the database.`,
     },
     {
-      name: "conzeal",
+      name: "p2v",
       type: "close",
       status: "in progress",
-      description: `A Zero Knowledge Proof (ZKP) age verifier built in compliance with the UK’s
-      Online Safety Act. It is slated to use passports as the means of age verification.`,
+      description: `A method of adding persona vector modality into an LLM.`,
     },
     {
       name: "esportion",
@@ -91,14 +90,7 @@ export const commonEn: Common = {
       We create a UI design system from these principles.`,
       meta_data: "1/2 parts done, 5 mins each",
       article_index: 0,
-    },
-    {
-      title: "A somewhat accessible introduction to Zero Knowledge Proofs",
-      description: `In this multiple part article series, we learn about the
-      inner workings of a ZKP in an intuitive yet rigorous manner, eventually
-      building up to writing an basic ZKP from scratch.`,
-      meta_data: "In progress",
-      article_index: 1,
+      parts: [0],
     },
   ],
 };

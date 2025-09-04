@@ -10,6 +10,23 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: blob:",
+  "connect-src 'self' ws://localhost:3000 http://localhost:3000",
+  "object-src 'none'",
+  "base-uri 'none'",
+  "frame-ancestors 'none'",
+  "form-action 'self'",
+].join("; ");
+
+export const headers: Route.HeadersFunction = () => ({
+  "Content-Security-Policy": CSP,
+});
+
 // Links imports all the Google Fonts in our project - Instrument Serif, IBM Plex Serif, and JetBrains Mono
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

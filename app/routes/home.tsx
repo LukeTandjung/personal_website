@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { NavBar, DisplayCard, Carousel, ArticleCard } from "components";
 import { commonEn } from "locales";
-import { match } from "ts-pattern";
+import { Match } from "effect";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -29,12 +29,13 @@ export default function Home() {
 
   const handleNavTrigger = (item: Section) => {
     return () => {
-      let ref: React.RefObject<HTMLElement | null> = match(item)
-        .returnType<React.RefObject<HTMLElement | null>>()
-        .with({ name: "about" }, () => about)
-        .with({ name: "projects" }, () => projects)
-        .with({ name: "articles" }, () => articles)
-        .exhaustive();
+      let ref: React.RefObject<HTMLElement | null> = Match.value(item).pipe(
+        Match.withReturnType<React.RefObject<HTMLElement | null>>(),
+        Match.when({ name: "about" }, () => about),
+        Match.when({ name: "projects" }, () => projects),
+        Match.when({ name: "articles" }, () => articles),
+        Match.exhaustive,
+      );
 
       ref.current?.scrollIntoView({
         behavior: "smooth",
