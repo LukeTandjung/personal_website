@@ -1,4 +1,5 @@
-export { NavBar } from "./NavBar";
+export { NavBar } from "./bars/NavBar";
+export { ToolBar } from "./bars/ToolBar";
 export { DisplayCard } from "./card/DisplayCard";
 export { ProjectCard } from "./card/ProjectCard";
 export { ArticleCard } from "./card/ArticleCard";

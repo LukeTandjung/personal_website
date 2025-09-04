@@ -4,6 +4,11 @@ export interface Section {
   name: "about" | "projects" | "articles";
 }
 
+export interface Tool {
+  name: "back" | "next" | "menu";
+  Icon: React.ElementType;
+}
+
 export interface Contact {
   name: string;
   Icon: React.ElementType;
@@ -34,11 +39,13 @@ export interface Article {
   title: string;
   description: string;
   meta_data: string;
-  article_url?: string | undefined;
+  article_index?: number | undefined;
+  parts: Array<number>;
 }
 
 export interface Common {
   nav: Array<Section>;
+  tool: Array<Tool>;
   contacts: Array<Contact>;
   introduction: Array<string>;
   interests: Array<Interest>;

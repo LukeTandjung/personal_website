@@ -1,6 +1,6 @@
 import * as React from "react";
 import { type Project } from "types";
-import { match } from "ts-pattern";
+import { Match } from "effect";
 import { GlobeAltIcon } from "@heroicons/react/16/solid";
 
 export function ProjectCard({
@@ -17,12 +17,13 @@ export function ProjectCard({
   const has_project_href: Boolean = project_url != null && project_url !== "";
 
   // These variables check what the badge background color should be.
-  const badge_bg_color: string = match(status)
-    .returnType<string>()
-    .with("live", () => "bg-ok")
-    .with("in progress", () => "bg-urgent")
-    .with("discontinued", () => "bg-warning")
-    .exhaustive();
+  const badge_bg_color: string = Match.value(status).pipe(
+    Match.withReturnType<string>(),
+    Match.when("live", () => "bg-ok"),
+    Match.when("in progress", () => "bg-urgent"),
+    Match.when("discontinued", () => "bg-warning"),
+    Match.exhaustive,
+  );
 
   // This state checks for any errors in the image_url loading,
   // and the fallback message!

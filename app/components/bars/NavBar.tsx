@@ -1,7 +1,7 @@
 import * as React from "react";
 import { type Section, type Common } from "types";
 import { NavigationMenu } from "@base-ui-components/react/navigation-menu";
-import { ContactButton } from "./button/ContactButton";
+import { ContactButton } from "../button/ContactButton";
 
 export function NavBar({
   commonEn,
