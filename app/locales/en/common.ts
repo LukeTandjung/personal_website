@@ -92,5 +92,14 @@ export const commonEn: Common = {
       article_index: 0,
       parts: [0],
     },
+    {
+      title: "A somewhat accessible introduction to Zero Knowledge Proofs",
+      description: `In this multiple part article series, we learn about the
+      inner workings of a ZKP in an intuitive yet rigorous manner, eventually
+      building up to writing an basic ZKP from scratch.`,
+      meta_data: "1/n parts done, 1 hour each",
+      article_index: 1,
+      parts: [0],
+    },
   ],
 };
