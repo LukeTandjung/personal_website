@@ -101,5 +101,12 @@ export const commonEn: Common = {
       article_index: 1,
       parts: [0],
     },
+    {
+      title: "Your Learning Should Be As Irreverent As Possible",
+      description: `Most people don't actually want to teach you, so you should stop following them.`,
+      meta_data: "5 mins read",
+      article_index: 2,
+      parts: [0],
+    },
   ],
 };
