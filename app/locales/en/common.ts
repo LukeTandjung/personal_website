@@ -108,5 +108,12 @@ export const commonEn: Common = {
       article_index: 2,
       parts: [0],
     },
+    {
+      title: "To Walk Out Of The Cave",
+      description: `My musings on my three weeks in San Francisco during the Break In program hosted by Dedalus Labs, and what I've learnt from it.`,
+      meta_data: "10 mins read",
+      article_index: 3,
+      parts: [0],
+    },
   ],
 };
