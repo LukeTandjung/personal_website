@@ -43,6 +43,11 @@ body {
   isolation: isolate;
 }
 
+.typst-frame {
+  max-width: 100%;
+  height: auto;
+}
+
 .embla {
   max-width: 100%;
   overflow: hidden;
