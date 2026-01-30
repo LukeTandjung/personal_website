@@ -68,17 +68,23 @@ export const commonEn: Common = {
       created by querying the database.`,
     },
     {
-      name: "p2v",
-      type: "close",
-      status: "in progress",
-      description: `A method of adding persona vector modality into an LLM.`,
+      name: "rstful",
+      type: "open",
+      status: "live",
+      description: `An agentic RSS reader, designed to be your antivirus from the internet.
+      The agent gets full context of your information stream, learning more about you and
+      recommending better content to you over time.`,
+      project_url: "https://rstful.com",
     },
     {
-      name: "esportion",
-      type: "close",
-      status: "in progress",
-      description: `An agentic platform that processes global trade data to reveal
-      trade patterns, derived unit prices, and competitor activities for specific commodities.`,
+      name: "ariadne",
+      type: "open",
+      status: "live",
+      description: `The agent SDK that helps your agents thread out of the labyrinth.
+      Ariadne delivers a user API surface modified from the Effect-TS agent SDK, while
+      running off Dedalus Labs unique backend.`,
+      project_url: "https://github.com/LukeTandjung/ariadne",
+      image_url: "/assets/ariadne_image.png",
     },
   ],
   articles: [
