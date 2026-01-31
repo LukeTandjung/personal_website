@@ -66,6 +66,7 @@ export const commonEn: Common = {
       Object-Concept-Mappings (OCM) that is stored in an embedded database.
       This builds up a knowledge graph, allowing notes to be automatically
       created by querying the database.`,
+      image_url: "/assets/yrekic_image.png",
     },
     {
       name: "rstful",
@@ -75,6 +76,7 @@ export const commonEn: Common = {
       The agent gets full context of your information stream, learning more about you and
       recommending better content to you over time.`,
       project_url: "https://rstful.com",
+      image_url: "/assets/rstful_image.png",
     },
     {
       name: "ariadne",
@@ -85,6 +87,14 @@ export const commonEn: Common = {
       running off Dedalus Labs unique backend.`,
       project_url: "https://github.com/LukeTandjung/ariadne",
       image_url: "/assets/ariadne_image.png",
+    },
+    {
+      name: "simplicia",
+      type: "open",
+      status: "in progress",
+      description: `Research in progress about exploring alternative data structures for agent
+      memory layers.`,
+      project_url: "https://github.com/LukeTandjung/simplicial-memories",
     },
   ],
   articles: [
