@@ -131,5 +131,13 @@ export const commonEn: Common = {
       article_index: 3,
       parts: [0],
     },
+    {
+      title:
+        "Memory Has Many Faces: Simplicial Complexes as Agent Memory Layers",
+      description: `A multi-part article series on simplicial complexes, simplex trees, and database-backed agent memory layers.`,
+      meta_data: "4/6 parts done parts, 10 mins each",
+      article_index: 4,
+      parts: [0, 1, 2, 3],
+    },
   ],
 };

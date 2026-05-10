@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class="flex flex-col gap-4 font-mono font-normal text-base text-char-default">
+      <h1 class="font-serif font-medium text-lg text-char-default">Introduction</h1>
+      <p>Agent memory systems have converged on two paradigms: retrieving memories as vectors embeddings in semantic space, and knowledge graphs representing entity relationships explicitly. Despite recent advances, including hybrid architectures, performance gaps persist. On LongMemEval, RAG systems achieve 86% accuracy while graph-based methods reach only 71% <a id="loc-1" href="#loc-5" role="doc-biblioref">[1]</a>.</p>
+      <p>This gap reflects a representational limitation. Vector embeddings collapse co-occurrence structure into continuous distances, losing discrete relationships. Knowledge graphs preserve structure but are constrained to pairwise interactions. When three or more entities co-occur meaningfully, such as multiple concepts in a conversation, or events in a session, pairwise graphs either discard this information <a id="loc-2" href="#loc-6" role="doc-biblioref">[2]</a> or attempt reconstruction through secondary inference <a id="loc-3" href="#loc-7" role="doc-biblioref">[3]</a>. Recent attempts at formalising this information loss include Wang and Kleinberg (2024), which proved the combinatorial impossibility of recovering higher-order structures from graph projections <a id="loc-4" href="#loc-8" role="doc-biblioref">[4]</a>.</p>
+      <p>We propose simplicial complexes as a unifying representation that addresses these limitations. Simplicial complexes occupy a privileged position in the knowledge representation hierarchy, with structure-preserving functors to graphs and vectors while avoiding information loss from projection. The simplex tree data structure provides efficient database-backed implementation. This enables memory architectures preserving contextual co-occurrence patterns, yielding measurable improvements on multi-hop reasoning and temporal queries.</p>
+      <section role="doc-bibliography">
+        <h1 class="font-serif font-medium text-lg text-char-default">Bibliography</h1>
+        <ul style="list-style-type: none">
+          <li id="loc-5"><span class="prefix"><a href="#loc-1" role="doc-backlink">[1]</a></span> Emergence.ai, “SOTA on LongMemEval with RAG.” [Online]. Available: <a href="https://www.emergence.ai/blog/sota-on-longmemeval-with-rag">https://www.emergence.ai/blog/sota-on-longmemeval-with-rag</a></li>
+          <li id="loc-6"><span class="prefix"><a href="#loc-2" role="doc-backlink">[2]</a></span> V. Salnikov, D. Cassese, R. Lambiotte, and N. Jones, “Co-occurrence simplicial complexes in mathematics: identifying the holes of knowledge,” <em>Applied Network Science</em>, vol. 3, no. 1, 2018, doi: <a href="https://doi.org/10.1007/s41109-018-0074-3">10.1007/s41109-018-0074-3</a>.</li>
+          <li id="loc-7"><span class="prefix"><a href="#loc-3" role="doc-backlink">[3]</a></span> A. R. Benson, R. Abebe, M. T. Schaub, A. Jadbabaie, and J. Kleinberg, “Simplicial Closure and higher-order link prediction,” <em>arXiv preprint arXiv:1802.06916</em>, 2018, doi: <a href="https://doi.org/10.48550/arxiv.1802.06916">10.48550/arxiv.1802.06916</a>.</li>
+          <li id="loc-8"><span class="prefix"><a href="#loc-4" role="doc-backlink">[4]</a></span> Y. Wang and J. Kleinberg, “From Graphs to Hypergraphs: Hypergraph Projection and its Remediation,” <em>arXiv preprint arXiv:2401.08519</em>, 2024, doi: <a href="https://doi.org/10.48550/arxiv.2401.08519">10.48550/arxiv.2401.08519</a>.</li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
