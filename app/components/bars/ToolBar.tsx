@@ -1,8 +1,7 @@
 import * as React from "react";
 import { type Tool, type Common } from "types";
 import { Toolbar } from "@base-ui-components/react/toolbar";
-import { ContactButton } from "../button/ContactButton";
-import { Effect, Match } from "effect";
+import { Match } from "effect";
 
 export function ToolBar({
   commonEn,
@@ -29,34 +28,22 @@ export function ToolBar({
   return (
     <nav
       id="tool-bar"
-      className="sticky top-6 z-50 flex items-start shrink-0 justify-between h-12 w-full lg:flex-row"
+      className="sticky top-6 z-50 flex items-start shrink-0 justify-start h-12 w-full sm:max-w-3/4 lg:max-w-5/8 lg:flex-row"
     >
-      <Toolbar.Root className="flex px-3 py-2 items-center gap-4 rounded-lg bg-panel-default">
+      <Toolbar.Root className="flex px-3 py-2 items-center gap-4 rounded-lg bg-paper-bg-light">
         <Toolbar.Group className="flex p-0 items-center gap-4">
           {commonEn.tool.map(({ name, Icon }: Tool, index: number) => (
             <Toolbar.Button
               key={index}
               ref={getButtonRef(name)}
               onClick={handleToolTrigger(name)}
-              className="flex px-2 py-1 items-start gap-0 rounded-sm bg-panel-default hover:bg-panel-select"
+              className="flex px-2 py-1 items-start gap-0 rounded-sm bg-paper-bg-light hover:bg-paper-bg"
             >
-              <Icon className="size-4 text-char-default hover:text-line-focus" />
+              <Icon className="size-4 text-char-default hover:text-paper-blue" />
             </Toolbar.Button>
           ))}
         </Toolbar.Group>
       </Toolbar.Root>
-      <div className="hidden sm:block">
-        <ContactButton
-          commonEn={commonEn}
-          className="flex p-2 items-center gap-2 rounded-lg border border-solid border-line-unfocus bg-panel-select"
-        />
-      </div>
-      <div className="sm:hidden">
-        <ContactButton
-          commonEn={commonEn}
-          className="fixed bottom-6 left-6 z-50 flex p-2 items-center gap-2 rounded-lg border border-solid border-line-unfocus bg-panel-select shadow-lg"
-        />
-      </div>
     </nav>
   );
 }

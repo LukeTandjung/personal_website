@@ -10,7 +10,7 @@ set -euo pipefail
 
 SITE_ROOT="${SITE_ROOT:-/home/luke/Projects/personal_website}"
 ARTICLE_ROOT="$SITE_ROOT/public/articles/4"
-ASSET_ROOT="$SITE_ROOT/public/assets/simplex_trees"
+ASSET_ROOT="$SITE_ROOT/public/assets/articles/simplex_trees"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TYPST_PREAMBLE="$SCRIPT_DIR/personal-article-html-preamble.typ"
 STYLE_MARKER="// <personal-website-article-style>"
@@ -57,7 +57,7 @@ style_images() {
   # Some diagrams have a lot of whitespace or are visually too prominent.
   # Keep these smaller while leaving denser diagrams readable.
   perl -0pi -e \
-    "s@(<img class=\"[^\"]*)max-w-\\[$DEFAULT_IMAGE_WIDTH\\]([^\"]*\" src=\"/assets/simplex_trees/(category_morphism|category_composition|functor_hierarchy|simplicial_complex|simplex_dimensions)\\.svg\")@\${1}max-w-[$SMALL_IMAGE_WIDTH]\${2}@g" \
+    "s@(<img class=\"[^\"]*)max-w-\\[$DEFAULT_IMAGE_WIDTH\\]([^\"]*\" src=\"/assets/articles/simplex_trees/(category_morphism|category_composition|functor_hierarchy|simplicial_complex|simplex_dimensions)\\.svg\")@\${1}max-w-[$SMALL_IMAGE_WIDTH]\${2}@g" \
     "$file"
 }
 

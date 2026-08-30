@@ -1,132 +1,136 @@
 import { type Common } from "types";
-import {
-  CpuChipIcon,
-  CircleStackIcon,
-  LanguageIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  Bars3Icon,
-} from "@heroicons/react/16/solid";
-import { GitHubLogoIcon, EnvelopeClosedIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon, ArrowRightIcon, MenuIcon } from "components";
 
 export const commonEn: Common = {
-  nav: [{ name: "about" }, { name: "projects" }, { name: "articles" }],
+  nav: [{ name: "about" }, { name: "articles" }, { name: "contacts" }],
   tool: [
     { name: "back", Icon: ArrowLeftIcon },
     { name: "next", Icon: ArrowRightIcon },
-    { name: "menu", Icon: Bars3Icon },
+    { name: "menu", Icon: MenuIcon },
   ],
   contacts: [
     {
       name: "github",
-      Icon: GitHubLogoIcon,
       href: "https://github.com/LukeTandjung",
     },
     {
       name: "email",
-      Icon: EnvelopeClosedIcon,
       href: "mailto:lukelucus123@gmail.com",
     },
   ],
   introduction: [
-    `I am a full-stack software and AI engineer. I am passionate about
-    utilising applied mathematics and statistics to build scalable,
-    user-friendly, and innovative applications that are pleasing to
-    the eye. I usually work closely with startups and small-medium
-    enterprises.`,
-    `When I am not coding, I am tinkering on Figma, learning more about
-    Computer Science, or writing about anything that comes into my
-    mind.`,
+    `I design mathematical and statistical software systems.`,
+    `When I am not coding, I am learning more about Computer Science, or
+    writing about anything that comes into my mind.`,
   ],
   interests: [
-    { name: "Large Language Models", Icon: LanguageIcon },
-    { name: "Distributed Systems", Icon: CircleStackIcon },
-    { name: "Computer Architecture", Icon: CpuChipIcon },
+    "Rust, Nix, EffectTS",
+    "Distributed Systems",
+    "Computer Architecture",
   ],
-  stack: {
-    "front-end": [
-      "React",
-      "Typescript",
-      "TailwindCSS",
-      "Bun",
-      "BaseUI",
-      "React Router",
-      "Effect",
-    ],
-    "back-end": ["Python", "Rust", "C", "FastAPI", "Actix", "Tauri"],
-    infrastructure: ["Postgres", "Docker", "Terraform", "AWS", "Nix"],
-  },
+  books: [
+    "A Philosophy of Software Design — John Ousterhout",
+    "Designing Data-Intensive Applications, 2nd ed. — Martin Kleppmann",
+  ],
   projects: [
     {
-      name: "yrekic",
-      type: "close",
-      status: "in progress",
-      description: `A LLM powered note taking software. Content can be
-      extracted in an i3-like window tiling manager and synthesised into
-      Object-Concept-Mappings (OCM) that is stored in an embedded database.
-      This builds up a knowledge graph, allowing notes to be automatically
-      created by querying the database.`,
-      image_url: "/assets/yrekic_image.png",
-    },
-    {
-      name: "rstful",
-      type: "open",
+      name: "Rstful",
       status: "live",
-      description: `An agentic RSS reader, designed to be your antivirus from the internet.
-      The agent gets full context of your information stream, learning more about you and
-      recommending better content to you over time.`,
-      project_url: "https://rstful.com",
-      image_url: "/assets/rstful_image.png",
+      image_url: "/assets/site/logos/rstful.png",
+      description: "An agentic RSS reader — your antivirus from the internet.",
+      project_url: "rstful.com",
     },
     {
-      name: "ariadne",
-      type: "open",
+      name: "Ariadne",
       status: "live",
-      description: `The agent SDK that helps your agents thread out of the labyrinth.
-      Ariadne delivers a user API surface modified from the Effect-TS agent SDK, while
-      running off Dedalus Labs unique backend.`,
-      project_url: "https://github.com/LukeTandjung/ariadne",
-      image_url: "/assets/ariadne_image.png",
+      image_url: "/assets/site/logos/ariadne.png",
+      description:
+        "The agent SDK that threads your agents out of the labyrinth.",
+      project_url: "github/ariadne",
     },
     {
-      name: "simplicia",
-      type: "open",
+      name: "Base GPUI",
       status: "in progress",
-      description: `Research in progress about exploring alternative data structures for agent
-      memory layers.`,
-      project_url: "https://github.com/LukeTandjung/simplicial-memories",
+      image_url: "/assets/site/logos/base-gpui.png",
+      description:
+        "Base UI's headless component APIs, ported natively to GPUI.",
+      project_url: "github/base-gpui",
+    },
+    {
+      name: "Neosicht",
+      status: "live",
+      image_url: "/assets/site/logos/neosicht.png",
+      description: "A themeable, GPUI-native desktop shell bar for macOS.",
+      project_url: "brew install --cask neosicht",
+    },
+  ],
+  photos: [
+    {
+      src: "/assets/site/photos/tokyo_2024.jpeg",
+      caption: "tokyo, 2024",
+      width: 210,
+      rotate: 4,
+      position: { top: "4%", right: "-180px" },
+    },
+    {
+      src: "/assets/site/photos/jeju_2022.jpeg",
+      caption: "jeju, 2022",
+      width: 220,
+      rotate: -5,
+      position: { top: "21%", left: "-190px" },
+    },
+    {
+      src: "/assets/site/photos/amsterdam_2025.jpeg",
+      caption: "amsterdam, 2025",
+      width: 200,
+      rotate: 3,
+      inline: true,
+    },
+    {
+      src: "/assets/site/photos/hainan_2024.jpeg",
+      caption: "hainan, 2024",
+      width: 205,
+      rotate: -3.5,
+      position: { top: "66%", left: "-175px" },
+    },
+    {
+      src: "/assets/site/photos/san_francisco_2026.jpeg",
+      caption: "san francisco, 2026",
+      width: 210,
+      rotate: -2,
+      inline: true,
     },
   ],
   articles: [
     {
       title:
-        "From Blocks to Buttons: Minecraft Skeuomorphic Principles Applied to UI Design.",
-      description: `In this multiple part article series, we examine how
-      Minecraft building principles can be translated into UI design principles.
-      We create a UI design system from these principles.`,
-      meta_data: "1/2 parts done, 5 mins each",
+        "From Blocks to Buttons: Minecraft Skeuomorphic Principles Applied to UI Design",
+      description: `How Minecraft building principles translate into UI design
+      principles, and a design system built from them.`,
+      meta_data: "1/2 parts, 5 mins each",
       article_index: 0,
       parts: [0],
     },
     {
       title: "A somewhat accessible introduction to Zero Knowledge Proofs",
-      description: `In this multiple part article series, we learn about the
-      inner workings of a ZKP in an intuitive yet rigorous manner, eventually
-      building up to writing an basic ZKP from scratch.`,
-      meta_data: "1/n parts done, 1 hour each",
+      description: `The inner workings of a ZKP, intuitive yet rigorous,
+      building up to writing a basic ZKP from scratch.`,
+      meta_data: "1/n parts, 1 hour each",
       article_index: 1,
       parts: [0],
     },
     {
       title: "Your Learning Should Be As Irreverent As Possible",
-      description: `Most people don't actually want to teach you, so you should stop following them.`,
+      description: `Most people don't actually want to teach you, so you
+      should stop following them.`,
       meta_data: "5 mins read",
       article_index: 2,
       parts: [0],
     },
     {
       title: "To Walk Out Of The Cave",
-      description: `My musings on my three weeks in San Francisco during the Break In program hosted by Dedalus Labs, and what I've learnt from it.`,
+      description: `Musings on three weeks in San Francisco during the Break
+      In program hosted by Dedalus Labs.`,
       meta_data: "10 mins read",
       article_index: 3,
       parts: [0],
@@ -134,8 +138,9 @@ export const commonEn: Common = {
     {
       title:
         "Memory Has Many Faces: Simplicial Complexes as Agent Memory Layers",
-      description: `A multi-part article series on simplicial complexes, simplex trees, and database-backed agent memory layers.`,
-      meta_data: "4/6 parts done parts, 10 mins each",
+      description: `Simplicial complexes, simplex trees, and database-backed
+      agent memory layers.`,
+      meta_data: "4/6 parts, 10 mins each",
       article_index: 4,
       parts: [0, 1, 2, 3],
     },

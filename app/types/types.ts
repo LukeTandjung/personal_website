@@ -1,7 +1,9 @@
 import * as React from "react";
 
+export type Tone = "info" | "success" | "warning" | "danger";
+
 export interface Section {
-  name: "about" | "projects" | "articles";
+  name: "about" | "articles" | "contacts";
 }
 
 export interface Tool {
@@ -11,24 +13,26 @@ export interface Tool {
 
 export interface Contact {
   name: string;
-  Icon: React.ElementType;
   href: string;
 }
 
-export interface Interest {
-  name: string;
-  Icon: React.ElementType;
+export interface PhotoPosition {
+  top?: string | undefined;
+  left?: string | undefined;
+  right?: string | undefined;
 }
 
-export interface TechStack {
-  "front-end": Array<string>;
-  "back-end": Array<string>;
-  infrastructure: Array<string>;
+export interface Photo {
+  src: string;
+  caption: string;
+  width: number;
+  rotate: number;
+  inline?: boolean | undefined;
+  position?: PhotoPosition | undefined;
 }
 
 export interface Project {
   name: string;
-  type: "open" | "close";
   status: "in progress" | "live" | "discontinued";
   image_url?: string | undefined;
   description: string;
@@ -48,8 +52,9 @@ export interface Common {
   tool: Array<Tool>;
   contacts: Array<Contact>;
   introduction: Array<string>;
-  interests: Array<Interest>;
-  stack: TechStack;
+  interests: Array<string>;
+  books: Array<string>;
   projects: Array<Project>;
+  photos: Array<Photo>;
   articles: Array<Article>;
 }

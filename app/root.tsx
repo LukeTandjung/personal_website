@@ -13,8 +13,8 @@ import "./app.css";
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
+  "font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com",
   "img-src 'self' data: blob:",
   "connect-src 'self' ws://localhost:3000 http://localhost:3000",
   "object-src 'none'",
@@ -27,7 +27,8 @@ export const headers: Route.HeadersFunction = () => ({
   "Content-Security-Policy": CSP,
 });
 
-// Links imports all the Google Fonts in our project - Instrument Serif, IBM Plex Serif, and JetBrains Mono
+// Links imports the paper design system fonts - Gaegu and IBM Plex Mono
+// from Google Fonts, and Comico from Fontshare
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -35,9 +36,14 @@ export const links: Route.LinksFunction = () => [
     href: "https://fonts.gstatic.com",
     crossOrigin: "anonymous",
   },
+  { rel: "preconnect", href: "https://api.fontshare.com" },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://api.fontshare.com/v2/css?f[]=comico@400&display=swap",
   },
   {
     rel: "icon",

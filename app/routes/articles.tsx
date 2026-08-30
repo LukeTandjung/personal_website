@@ -124,15 +124,25 @@ export default function Articles() {
   }, [article.index, article.part]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-6 gap-4">
-      <ToolBar {...{ commonEn, handleToolTrigger, back_ref, next_ref }} />
-      {article.source ? (
-        <div
-          id="article-content-card"
-          className="flex p-5 justify-center items-center flex-col sm:max-w-3/4 lg:max-w-5/8 rounded-lg bg-panel-default/75"
-          dangerouslySetInnerHTML={{ __html: article.source }}
+    <div className="min-h-dvh">
+      {/* Fixed sky backdrop, same as the home page */}
+      <div className="fixed inset-0 z-0 bg-[#2a68a6]">
+        <img
+          src="/assets/site/sky.webp"
+          alt=""
+          className="absolute bottom-0 left-0 block h-auto w-full"
         />
-      ) : null}
+      </div>
+      <div className="relative z-[1] flex min-h-dvh flex-col items-center justify-center gap-4 p-6">
+        <ToolBar {...{ commonEn, handleToolTrigger, back_ref, next_ref }} />
+        {article.source ? (
+          <div
+            id="article-content-card"
+            className="flex flex-col items-center justify-center rounded-lg border border-line-default bg-paper-bg bg-[url(/assets/design/paper_texture_4k.png)] bg-[length:1200px_auto] bg-blend-multiply p-5 opacity-[0.97] shadow-lift sm:max-w-3/4 lg:max-w-5/8"
+            dangerouslySetInnerHTML={{ __html: article.source }}
+          />
+        ) : null}
+      </div>
     </div>
   );
 }

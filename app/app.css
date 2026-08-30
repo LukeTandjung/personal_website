@@ -1,42 +1,154 @@
 @import "tailwindcss";
 
 @theme {
-  /* Fonts */
-  --font-display: "Instrument Serif", serif;
-  --font-serif: "IBM Plex Serif", serif;
-  --font-mono: "JetBrains Mono", monospace;
+  /* Fonts — paper design system */
+  --font-display: "Comico", "Gaegu", "Segoe Print", cursive;
+  --font-hand: "Gaegu", "Segoe Print", cursive;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* Kanagawa colour palette */
+  /* Paper colour palette — verbatim from the vim-paper palette */
   --color-*: initial;
 
-  /* This is for background colors! */
-  --color-panel-default: #1f1f28;
-  --color-panel-alt: #16161d;
-  --color-panel-select: #223249;
+  --color-paper-bg: #f2eede;
+  --color-paper-bg-light: #f7f3e3;
+  --color-paper-black: #000000;
+  --color-paper-blue: #1e6fcc;
+  --color-paper-green: #216609;
+  --color-paper-green-light: #dfeacc;
+  --color-paper-red: #cc3e28;
+  --color-paper-grey: #777777;
+  --color-paper-grey-dark: #555555;
+  --color-paper-grey-l1: #d8d5c7;
+  --color-paper-grey-l2: #bfbcaf;
+  --color-paper-grey-l3: #aaaaaa;
+  --color-paper-yellow: #b58900;
+  --color-paper-yellow-light: #f2de91;
+  --color-paper-orange: #a55000;
+  --color-paper-purple: #5c21a5;
+  --color-paper-white: #ffffff;
+  --color-paper-cyan: #158c86;
 
-  --color-char-default: #dcd7ba;
-  --color-char-alt: #727169;
-  --color-line-unfocus: #54546d;
-  --color-line-focus: #7e9cd8;
-  --color-warning: #c0a36e;
-  --color-urgent: #ffa066;
-  --color-error: #c34043;
-  --color-ok: #76946a;
+  /* Hand-cut corners — uneven radii so edges feel scissor-cut, not machined */
+  --radius-hand: 9px 5px 8px 6px / 6px 8px 5px 9px;
+  --radius-hand-sm: 6px 4px 7px 4px / 4px 7px 4px 6px;
+  --radius-tab: 8px 10px 0 0 / 9px 11px 0 0;
+
+  --shadow-paper: 0 1px 2px rgba(85, 85, 85, 0.18), 0 2px 5px rgba(85, 85, 85, 0.08);
+  --shadow-lift: 0 2px 3px rgba(85, 85, 85, 0.2), 0 4px 10px rgba(85, 85, 85, 0.1);
+
+  --ease-quiet: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Derived colours — reference other tokens, so they must be inlined */
+@theme inline {
+  --color-char-default: var(--color-paper-black);
+  --color-char-muted: var(--color-paper-grey);
+  --color-char-faint: var(--color-paper-grey-l3);
+  --color-line-default: var(--color-paper-grey-l2);
+  --color-line-subtle: var(--color-paper-grey-l1);
+
+  --color-accent: var(--color-paper-blue);
+  --color-success: var(--color-paper-green);
+  --color-warning: var(--color-paper-orange);
+  --color-danger: var(--color-paper-red);
+
+  --color-tint-blue: color-mix(in oklab, var(--color-paper-blue) 13%, var(--color-paper-bg));
+  --color-tint-red: color-mix(in oklab, var(--color-paper-red) 13%, var(--color-paper-bg));
+  --color-tint-purple: color-mix(in oklab, var(--color-paper-purple) 11%, var(--color-paper-bg));
+  --color-tint-cyan: color-mix(in oklab, var(--color-paper-cyan) 13%, var(--color-paper-bg));
+  --color-tint-green: var(--color-paper-green-light);
+  --color-tint-yellow: var(--color-paper-yellow-light);
+
+  /* Resolved per-element by the tone-* classes below */
+  --color-tone: var(--tone);
+  --color-tone-surface: var(--tone-surface);
+}
+
+/* Paper textures — overlay as background-image layers */
+@utility texture-grain {
+  background-image: url("/assets/design/grain.png");
+}
+@utility texture-postit {
+  background-image: url("/assets/design/postit.jpg");
+}
+@utility texture-wrinkle {
+  background-image: url("/assets/design/wrinkle.jpg");
+}
+
+/* Semantic tones — the single source for accent/status colouring. Components
+   set a tone-* class and colour with the text-tone / bg-tone-surface /
+   border-tone utilities. */
+.tone-info {
+  --tone: var(--color-accent);
+  --tone-surface: var(--color-tint-blue);
+}
+.tone-success {
+  --tone: var(--color-success);
+  --tone-surface: var(--color-tint-green);
+}
+.tone-warning {
+  --tone: var(--color-warning);
+  --tone-surface: var(--color-tint-yellow);
+}
+.tone-danger {
+  --tone: var(--color-danger);
+  --tone-surface: var(--color-tint-red);
+}
+
+/* Shared BaseUI Dialog popup animation (polaroid zoom, drawn project card).
+   The popup rests at the centre (--popup-*) and enters/leaves from the
+   trigger's spot (--popup-from-*), following the Base UI transition pattern:
+   [data-starting-style] is the first frame, [data-ending-style] the exit. */
+.paper-popup {
+  translate: var(--popup-translate, -50% -50%);
+  scale: var(--popup-scale, 1);
+  rotate: var(--popup-rotate, 0deg);
+  transition:
+    translate 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    rotate 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.paper-popup[data-starting-style],
+.paper-popup[data-ending-style] {
+  translate: var(--popup-from-translate, -50% -50%);
+  scale: var(--popup-from-scale, 0.9);
+  rotate: var(--popup-from-rotate, 0deg);
+}
+/* Skip the popup exit animation entirely. The portal paints above the
+   isolated app root, so a portaled popup can never slide *under* elements
+   inside it (e.g. a drawn project card returning below the rest of the deck).
+   Components that need an under-the-fan exit hide the popup instantly and
+   animate their in-context copy instead. */
+.paper-popup-instant-exit[data-ending-style] {
+  transition: none;
+  visibility: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
 body {
-  /* This is the background image of the website! */
-  background:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%),
-    url("/images/website_background.png") lightgray 50% / cover no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  overflow-x: clip;
+  background: #2a68a6;
+  color: var(--color-paper-black);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.5;
   @apply min-h-dvh;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+::selection {
+  background: var(--color-paper-grey-l1);
+}
+
+a {
+  color: var(--color-paper-blue);
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.7;
 }
 
 .root {
@@ -46,22 +158,4 @@ body {
 .typst-frame {
   max-width: 100%;
   height: auto;
-}
-
-.embla {
-  max-width: 100%;
-  overflow: hidden;
-  border-radius: 2px;
-}
-.embla__container {
-  display: flex;
-  align-items: stretch;
-  border-radius: 2px;
-}
-.embla__slide {
-  display: flex;
-  flex: 0 0 50%;
-  min-width: 0;
-  margin-left: 6px;
-  margin-right: 6px;
 }

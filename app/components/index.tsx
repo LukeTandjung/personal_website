@@ -1,7 +1,9 @@
 export { NavBar } from "./bars/NavBar";
 export { ToolBar } from "./bars/ToolBar";
-export { DisplayCard } from "./card/DisplayCard";
-export { ProjectCard } from "./card/ProjectCard";
+export { Callout } from "./card/Callout";
+export { PolaroidPhoto } from "./card/PolaroidPhoto";
+export { ProjectDeck } from "./card/ProjectDeck";
 export { ArticleCard } from "./card/ArticleCard";
-export { Carousel } from "./Carousel";
-export { ContactButton } from "./button/ContactButton";
+export { ArrowLeftIcon } from "./icons/ArrowLeftIcon";
+export { ArrowRightIcon } from "./icons/ArrowRightIcon";
+export { MenuIcon } from "./icons/MenuIcon";

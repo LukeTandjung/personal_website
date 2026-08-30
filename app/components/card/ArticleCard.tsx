@@ -1,48 +1,28 @@
 import * as React from "react";
-import { type Article } from "types";
-import { Separator } from "@base-ui-components/react/separator";
-import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router";
+import { type Article } from "types";
 
+// One row in the Articles list: title + description on the left, reading
+// metadata on the right, separated by ruled pencil lines.
 export function ArticleCard({
   title,
   description,
   meta_data,
   article_index,
+  parts,
 }: Article): React.ReactElement {
   return (
-    <div
-      id={`${title}-article-card`}
-      className="flex p-3 flex-col items-start gap-3 rounded-sm bg-panel-alt/75"
+    <Link
+      to={`/articles/${article_index}/part/${parts[0]}`}
+      className="grid grid-cols-[1fr_170px] gap-5 border-b border-line-subtle px-2 py-[18px] !text-char-default hover:bg-paper-bg-light hover:!opacity-100"
     >
-      <header
-        id={`${title}-article-header`}
-        className="flex justify-between items-center self-stretch"
-      >
-        <h3 className="font-serif font-normal text-lg text-char-default">
-          {title}
-        </h3>
-      </header>
-      <div
-        id={`${title}-article-description`}
-        className="flex items-start self-stretch"
-      >
-        <p className="font-mono font-normal text-base text-char-alt">
+      <span>
+        <span className="mb-1 block font-semibold">{title}</span>
+        <span className="block text-sm text-pretty text-char-muted">
           {description}
-        </p>
-      </div>
-      <Separator className="w-full h-[1px] bg-line-unfocus" />
-      <footer
-        id={`${title}-article-footer`}
-        className="flex justify-between items-start self-stretch"
-      >
-        <span className="font-mono font-medium text-sm text-char-alt">
-          {meta_data}
         </span>
-        <Link to={`/articles/${article_index}/part/0`}>
-          <OpenInNewWindowIcon className="size-4 text-char-alt" />
-        </Link>
-      </footer>
-    </div>
+      </span>
+      <span className="text-right text-xs text-char-faint">{meta_data}</span>
+    </Link>
   );
 }

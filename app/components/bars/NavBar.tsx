@@ -1,8 +1,11 @@
 import * as React from "react";
+import { Match } from "effect";
 import { type Section, type Common } from "types";
-import { NavigationMenu } from "@base-ui-components/react/navigation-menu";
-import { ContactButton } from "../button/ContactButton";
+import { Tabs } from "@base-ui-components/react/tabs";
 
+// Paper folder tabs hanging off the top edge of the paper sheet. Each tab is
+// tinted like a stationery divider; the selected tab lifts up and merges with
+// the sheet below it.
 export function NavBar({
   commonEn,
   section,
@@ -10,45 +13,36 @@ export function NavBar({
 }: {
   commonEn: Common;
   section: Section;
-  handleNavTrigger: (
-    item: Section,
-  ) => React.MouseEventHandler<HTMLButtonElement>;
+  handleNavTrigger: (item: Section) => void;
 }): React.ReactElement {
   return (
-    <nav
-      id="nav-bar"
-      className="sticky top-6 z-50 flex items-start shrink-0 justify-between h-12 w-full lg:flex-row"
+    <Tabs.Root
+      value={section.name}
+      onValueChange={(value) => {
+        const item = commonEn.nav.find((nav: Section) => nav.name === value);
+        if (item != null) handleNavTrigger(item);
+      }}
     >
-      <NavigationMenu.Root className="flex px-3 py-2 items-center gap-4 rounded-lg bg-panel-default">
-        <NavigationMenu.List className="flex p-0 items-center gap-4">
-          {commonEn.nav.map((item: Section, index: number) => (
-            <NavigationMenu.Item key={index}>
-              <NavigationMenu.Trigger
-                onClick={handleNavTrigger(item)}
-                className={`flex px-2 py-1 items-start gap-0 rounded-sm ${section.name === item.name ? "bg-panel-select" : "bg-panel-default"}`}
-              >
-                <span
-                  className={`font-mono font-medium text-base ${section.name === item.name ? "text-line-focus" : "text-char-default"}`}
-                >
-                  {`${item.name.slice(0, 1).toUpperCase()}${item.name.slice(1, item.name.length)}`}
-                </span>
-              </NavigationMenu.Trigger>
-            </NavigationMenu.Item>
-          ))}
-        </NavigationMenu.List>
-      </NavigationMenu.Root>
-      <div className="hidden sm:block">
-        <ContactButton
-          commonEn={commonEn}
-          className="flex p-2 items-center gap-2 rounded-lg border border-solid border-line-unfocus bg-panel-select"
-        />
-      </div>
-      <div className="sm:hidden">
-        <ContactButton
-          commonEn={commonEn}
-          className="fixed bottom-6 left-6 z-50 flex p-2 items-center gap-2 rounded-lg border border-solid border-line-unfocus bg-panel-select shadow-lg"
-        />
-      </div>
-    </nav>
+      <Tabs.List className="flex items-end gap-[3px] px-2 font-mono text-[13px]">
+        {commonEn.nav.map((item: Section) => (
+          <Tabs.Tab
+            key={item.name}
+            value={item.name}
+            className={`${Match.value(item.name).pipe(
+              Match.when("about", () => "bg-tint-yellow"),
+              Match.when("articles", () => "bg-tint-blue"),
+              Match.when("contacts", () => "bg-tint-green"),
+              Match.exhaustive,
+            )} texture-grain cursor-pointer rounded-tab border border-line-default text-char-default transition-all hover:pt-2 hover:pb-[7px] hover:opacity-100 ${
+              section.name === item.name
+                ? "-mb-px border-b-transparent px-[18px] pt-2 pb-[7px] font-bold opacity-100 shadow-[0_-1px_2px_rgba(85,85,85,0.1)]"
+                : "px-3.5 pt-[5px] pb-1 font-normal opacity-75"
+            }`}
+          >
+            {item.name}
+          </Tabs.Tab>
+        ))}
+      </Tabs.List>
+    </Tabs.Root>
   );
 }

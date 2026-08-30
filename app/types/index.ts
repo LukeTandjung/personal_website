@@ -1,9 +1,10 @@
 export type {
+  Tone,
   Section,
   Tool,
   Contact,
-  Interest,
-  TechStack,
+  Photo,
+  PhotoPosition,
   Project,
   Article,
   Common,
