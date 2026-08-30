@@ -138,7 +138,7 @@ export default function Articles() {
         {article.source ? (
           <div
             id="article-content-card"
-            className="flex flex-col items-center justify-center rounded-lg border border-line-default bg-paper-bg bg-[url(/assets/design/paper_texture_4k.png)] bg-[length:1200px_auto] bg-blend-multiply p-5 opacity-[0.97] shadow-lift sm:max-w-3/4 lg:max-w-5/8"
+            className="typst-article w-full rounded-lg border border-line-default bg-paper-bg bg-[url(/assets/design/paper_texture_4k.png)] bg-[length:1200px_auto] bg-blend-multiply p-5 opacity-[0.97] shadow-lift sm:max-w-3/4 lg:max-w-5/8"
             dangerouslySetInnerHTML={{ __html: article.source }}
           />
         ) : null}

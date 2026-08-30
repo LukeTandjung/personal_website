@@ -4,6 +4,9 @@
   "type": "module",
   "scripts": {
     "sanitize:articles": "bun run personal_website/scripts/sanitizeArticles.ts",
+    "articles:theme": "bun run scripts/generateArticleTypstTheme.ts",
+    "articles:theme:check": "bun run scripts/generateArticleTypstTheme.ts --check",
+    "articles:compile": "bash scripts/compile-articles.sh",
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",

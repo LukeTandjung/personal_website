@@ -7,3 +7,6 @@
 
 # Nix Files
 /.direnv/
+
+# Article compiler staging
+/.article-build.*/

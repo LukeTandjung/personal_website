@@ -34,6 +34,39 @@ npm run dev
 
 Your application will be available at `http://localhost:5173`.
 
+## Article compilation
+
+Typst articles are compiled with the versions pinned by `flake.nix`:
+
+- Typst 0.15.1
+- Calepin 0.0.57
+
+Enter the development shell and compile the articles:
+
+```bash
+nix develop
+bun run articles:compile
+```
+
+The compiler reads article indexes 0–3 from
+`~/Documents/vault/personal_articles` and article 4's publication entrypoints
+from `~/Documents/vault/project_draft/simplex_trees/web`. Override these with
+`ARTICLE_SOURCE_ROOT` and `SIMPLEX_ARTICLE_PARTS_ROOT` respectively.
+
+`app/app.css` is the article design source of truth. The
+`--article-*`, font, and colour tokens are converted into the paged Typst theme
+at `scripts/generated/article-theme.typ`. Do not edit that generated file;
+regenerate or verify it with:
+
+```bash
+bun run articles:theme
+bun run articles:theme:check
+```
+
+All published article parts are compiled directly through Calepin. Article 4
+diagrams exist only under `public/assets/articles/simplex_trees`; the theme
+generator updates their semantic foreground attributes from `app/app.css` in place.
+
 ## Building for Production
 
 Create a production build:

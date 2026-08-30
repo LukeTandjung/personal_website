@@ -17,7 +17,7 @@
                                                 <g class="typst-group">
                                                     <g>
                                                         <g class="typst-text" transform="matrix(1 0 0 -1 2 8.83)">
-                                                            <use xlink:href="#g6DEC9F142915A7C8ED099975ABE1BC2A" x="0" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
+                                                            <use xlink:href="#g6DEC9F142915A7C8ED099975ABE1BC2A" x="0" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
                                                         </g>
                                                     </g>
                                                 </g>
@@ -40,10 +40,10 @@
                                                 <g class="typst-group">
                                                     <g>
                                                         <g class="typst-text" transform="matrix(1 0 0 -1 2 8.83)">
-                                                            <use xlink:href="#g554E9DD351D25942646E1FFF3FDAD067" x="0" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
+                                                            <use xlink:href="#g554E9DD351D25942646E1FFF3FDAD067" x="0" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
                                                         </g>
                                                         <g class="typst-text" transform="matrix(1 0 0 -1 10.109999999999998 11.3)">
-                                                            <use xlink:href="#gAA9BE5A126EAEFF25FDFC6B7DC9C5972" x="0" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
+                                                            <use xlink:href="#gAA9BE5A126EAEFF25FDFC6B7DC9C5972" x="0" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
                                                         </g>
                                                     </g>
                                                 </g>
@@ -61,8 +61,8 @@
                                         <g class="typst-group">
                                             <g>
                                                 <g class="typst-text" transform="matrix(1 0 0 -1 0.000000000049999829298746954 6.83)">
-                                                    <use xlink:href="#gFFA0AE558D275D2E41B728837A5EECAB" x="0" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#gECEB1837B31FC303DF27674E25C0A16A" x="5.5600000000000005" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
+                                                    <use xlink:href="#gFFA0AE558D275D2E41B728837A5EECAB" x="0" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#gECEB1837B31FC303DF27674E25C0A16A" x="5.5600000000000005" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
                                                 </g>
                                             </g>
                                         </g>
@@ -78,11 +78,11 @@
                                         <g class="typst-group">
                                             <g>
                                                 <g class="typst-text" transform="matrix(1 0 0 -1 0.00000000005000072447069752 6.83)">
-                                                    <use xlink:href="#g710988D64361FF4669AAAC18596E25CC" x="0" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#g5B56189F4B61D0411A937681F49C913B" x="7.8500000000000005" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#g473161271415EA1600AF60738E54DE7C" x="11.770000000000001" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#g5CEA6C9A4F8694ADA228E39F60061619" x="16.770000000000003" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#gCB65EFC98C101DD54FA0DEFB2CFE629" x="22.330000000000005" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
+                                                    <use xlink:href="#g710988D64361FF4669AAAC18596E25CC" x="0" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#g5B56189F4B61D0411A937681F49C913B" x="7.8500000000000005" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#g473161271415EA1600AF60738E54DE7C" x="11.770000000000001" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#g5CEA6C9A4F8694ADA228E39F60061619" x="16.770000000000003" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#gCB65EFC98C101DD54FA0DEFB2CFE629" x="22.330000000000005" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
                                                 </g>
                                             </g>
                                         </g>
@@ -98,10 +98,10 @@
                                         <g class="typst-group">
                                             <g>
                                                 <g class="typst-text" transform="matrix(1 0 0 -1 0.000000000050002514814598645 6.83)">
-                                                    <use xlink:href="#g81ACF0C6B59D2D7E4828CEBD4FE619EE" x="0" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#g2CFBF355A086744D66EAE850A6E5A879" x="7.5" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#gBC8988F2A5752C2A5F05CF18782EECF" x="11.940000000000001" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
-                                                    <use xlink:href="#gD18D2E406A3A2DB79B9B9EAA980B1DD5" x="16.380000000000003" y="0" fill="#dcd7ba" fill-rule="nonzero"/>
+                                                    <use xlink:href="#g81ACF0C6B59D2D7E4828CEBD4FE619EE" x="0" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#g2CFBF355A086744D66EAE850A6E5A879" x="7.5" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#gBC8988F2A5752C2A5F05CF18782EECF" x="11.940000000000001" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
+                                                    <use xlink:href="#gD18D2E406A3A2DB79B9B9EAA980B1DD5" x="16.380000000000003" y="0" data-article-foreground-fill="" fill="#000000" fill-rule="nonzero"/>
                                                 </g>
                                             </g>
                                         </g>

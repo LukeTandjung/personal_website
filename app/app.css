@@ -39,6 +39,21 @@
   --ease-quiet: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+/* Article typography is consumed by both browser CSS and
+   scripts/generateArticleTypstTheme.ts. Keep these values concrete: the
+   generator converts CSS lengths to Typst points for paged output. */
+:root {
+  --article-font-body: var(--font-mono);
+  --article-font-heading: var(--font-hand);
+  --article-body-size: 15px;
+  --article-line-height: 1.5;
+  --article-heading-size: 18px;
+  --article-caption-size: 13px;
+  --article-block-spacing: 1rem;
+  --article-diagram-max-width: 18rem;
+  --article-diagram-compact-max-width: 12rem;
+}
+
 /* Derived colours — reference other tokens, so they must be inlined */
 @theme inline {
   --color-char-default: var(--color-paper-black);
@@ -155,6 +170,209 @@ a:hover {
   isolation: isolate;
 }
 
+.typst-article {
+  width: 100%;
+  color: var(--color-char-default);
+  font-family: var(--article-font-body);
+  font-size: var(--article-body-size);
+  line-height: var(--article-line-height);
+}
+
+.typst-article > * {
+  margin-block: 0;
+}
+
+.typst-article > * + * {
+  margin-block-start: var(--article-block-spacing);
+}
+
+.typst-article h1,
+.typst-article h2,
+.typst-article h3,
+.typst-article h4,
+.typst-article h5,
+.typst-article h6 {
+  color: var(--color-char-default);
+  font-family: var(--article-font-heading);
+  font-size: var(--article-heading-size);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.typst-article ul,
+.typst-article ol {
+  padding-inline-start: 1.75rem;
+}
+
+.typst-article ul {
+  list-style: disc;
+}
+
+.typst-article ol {
+  list-style: decimal;
+}
+
+.typst-article li + li {
+  margin-block-start: 0.5rem;
+}
+
+.typst-article blockquote {
+  margin-inline: 0;
+  padding-inline: 1.25rem;
+  color: var(--color-char-muted);
+  font-size: var(--article-caption-size);
+  text-align: center;
+}
+
+.typst-article figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.typst-article figure > p {
+  margin: 0;
+}
+
+.typst-article .typst-grid {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.typst-article figcaption {
+  width: 100%;
+  color: var(--color-char-muted);
+  font-size: var(--article-caption-size);
+  text-align: left;
+}
+
+.typst-article img,
+.typst-article svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.typst-article .typst-diagram {
+  display: block;
+  width: 100%;
+  max-width: var(--article-diagram-max-width);
+  margin-inline: auto;
+}
+
+.typst-article .typst-diagram--compact {
+  max-width: var(--article-diagram-compact-max-width);
+}
+
+.typst-article table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.typst-article th,
+.typst-article td {
+  border: 1px solid var(--color-line-default);
+  padding: 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.typst-article math {
+  color: var(--color-char-default);
+}
+
+.typst-article math[display="block"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-block: 0.25rem;
+  text-align: center;
+}
+
+/* Structural MathML rules emitted by Typst 0.15.1. Generated article heads
+   are discarded when their bodies are embedded, so the shared site stylesheet
+   owns these rules too. */
+.typst-article mtable.right-align mtd,
+.typst-article mtable mtd.right-align,
+.typst-article mtable.left-align mtd.right-align,
+.typst-article mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+
+.typst-article mtable.cases mtd,
+.typst-article mtable.left-align mtd,
+.typst-article mtable mtd.left-align,
+.typst-article mtable.aligned mtd:nth-child(even),
+.typst-article math:not([display]) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+
+.typst-article mtable.cases mtd,
+.typst-article mtable.aligned mtd,
+.typst-article mtable mtd.flushed,
+.typst-article mtable mtd.left-flush {
+  padding-left: 0;
+}
+
+.typst-article mtable.cases mtd,
+.typst-article mtable.aligned mtd,
+.typst-article mtable mtd.flushed,
+.typst-article mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+.typst-article mtable {
+  math-style: inherit;
+}
+
+.typst-article mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+.typst-article mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+
+.typst-article math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+.typst-article mfrac {
+  margin-inline: 0.1em;
+  padding-inline: 0;
+}
+
+.typst-article mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+
+.typst-article mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+.typst-article munder > :nth-child(2),
+.typst-article munderover > :nth-child(2) {
+  math-shift: compact;
+}
+
+.typst-article munder[accentunder="true" i] > :not(:first-child),
+.typst-article mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}
+
+/* Retained for already-published articles and visual diagram fallbacks. New
+   equations are emitted as native MathML by Typst 0.15. */
 .typst-frame {
   max-width: 100%;
   height: auto;
