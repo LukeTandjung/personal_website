@@ -14,7 +14,7 @@ export function ArticleCard({
   return (
     <Link
       to={`/articles/${article_index}/part/${parts[0]}`}
-      className="grid grid-cols-[1fr_170px] gap-5 border-b border-line-subtle px-2 py-[18px] !text-char-default hover:bg-paper-bg-light hover:!opacity-100"
+      className="grid grid-cols-1 gap-2 border-b border-line-subtle px-1 py-4 !text-char-default hover:bg-paper-bg-light hover:!opacity-100 sm:grid-cols-[1fr_170px] sm:gap-5 sm:px-2 sm:py-[18px]"
     >
       <span>
         <span className="mb-1 block font-semibold">{title}</span>
@@ -22,7 +22,9 @@ export function ArticleCard({
           {description}
         </span>
       </span>
-      <span className="text-right text-xs text-char-faint">{meta_data}</span>
+      <span className="text-left text-xs text-char-faint sm:text-right">
+        {meta_data}
+      </span>
     </Link>
   );
 }

@@ -28,18 +28,18 @@ export function ToolBar({
   return (
     <nav
       id="tool-bar"
-      className="sticky top-6 z-50 flex items-start shrink-0 justify-start h-12 w-full sm:max-w-3/4 lg:max-w-5/8 lg:flex-row"
+      className="sticky top-3 z-50 flex h-12 w-full max-w-[860px] shrink-0 items-start justify-start sm:top-6"
     >
-      <Toolbar.Root className="flex px-3 py-2 items-center gap-4 rounded-lg bg-paper-bg-light">
-        <Toolbar.Group className="flex p-0 items-center gap-4">
+      <Toolbar.Root className="flex items-center gap-2 rounded-lg bg-paper-bg-light p-1.5 shadow-paper sm:gap-4 sm:px-3 sm:py-2">
+        <Toolbar.Group className="flex items-center gap-1 p-0 sm:gap-4">
           {commonEn.tool.map(({ name, Icon }: Tool, index: number) => (
             <Toolbar.Button
               key={index}
               ref={getButtonRef(name)}
               onClick={handleToolTrigger(name)}
-              className="flex px-2 py-1 items-start gap-0 rounded-sm bg-paper-bg-light hover:bg-paper-bg"
+              className="flex size-10 items-center justify-center rounded-sm bg-paper-bg-light p-0 hover:bg-paper-bg sm:h-auto sm:w-auto sm:px-2 sm:py-1"
             >
-              <Icon className="size-4 text-char-default hover:text-paper-blue" />
+              <Icon className="size-5 text-char-default hover:text-paper-blue sm:size-4" />
             </Toolbar.Button>
           ))}
         </Toolbar.Group>

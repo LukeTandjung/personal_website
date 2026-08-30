@@ -225,11 +225,20 @@ export function ProjectDeck({
     ) {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const scale = Math.min(2.2, (vw - 120) / 320, (vh - 140) / 210);
+      const narrow = vw < 640;
+      const compact = vw < 1024;
+      const scale = Math.min(
+        2.2,
+        (vw - (narrow ? 32 : 120)) / 320,
+        (vh - (narrow ? 64 : 140)) / 210,
+      );
+      const restY = compact ? 0.5 : 0.46;
+      const deckX = compact ? vw - 48 : vw - 88;
+      const deckY = compact ? vh - 18 : vh - 17;
       return {
         transition: "none",
         zIndex: 40 + position,
-        transform: `translate(${vw * 0.5 - (vw - 88) + returning.dx}px,${vh * 0.46 - (vh - 17) + returning.dy}px) rotate(-1.5deg) scale(${scale})`,
+        transform: `translate(${vw * 0.5 - deckX + returning.dx}px,${vh * restY - deckY + returning.dy}px) rotate(-1.5deg) scale(${scale})`,
       };
     }
     return {
@@ -238,7 +247,7 @@ export function ProjectDeck({
           ? "none"
           : "transform 0.38s cubic-bezier(0.22,1,0.36,1)",
       zIndex: 40 + position,
-      transform: `translate(${activeDrag !== null ? activeDrag.dx : 0}px,${activeDrag !== null ? activeDrag.dy : 0}px) rotate(${-8 - depth * 16}deg)`,
+      transform: `translate(${activeDrag !== null ? activeDrag.dx : 0}px,${activeDrag !== null ? activeDrag.dy : 0}px) rotate(${-8 - depth * 16}deg) scale(var(--project-deck-scale, 1))`,
     };
   };
 
@@ -262,15 +271,24 @@ export function ProjectDeck({
     const activeDrag = drag !== null && drag.index === drawn ? drag : null;
     const dx = activeDrag !== null ? activeDrag.dx : 0;
     const dy = activeDrag !== null ? activeDrag.dy : 0;
-    const scale = Math.min(2.2, (vw - 120) / 320, (vh - 140) / 210);
+    const narrow = vw < 640;
+    const compact = vw < 1024;
+    const scale = Math.min(
+      2.2,
+      (vw - (narrow ? 32 : 120)) / 320,
+      (vh - (narrow ? 64 : 140)) / 210,
+    );
+    const restY = compact ? 0.5 : 0.46;
+    const deckX = compact ? vw - 48 : vw - 88;
+    const deckY = compact ? vh - 18 : vh - 17;
     return {
       transition: activeDrag !== null ? "none" : undefined,
       cursor: activeDrag !== null ? "grabbing" : "grab",
       "--popup-translate": `${-160 + dx}px ${-105 + dy}px`,
       "--popup-scale": `${scale}`,
       "--popup-rotate": "-1.5deg",
-      "--popup-from-translate": `${vw - 88 - vw * 0.5 - 160}px ${vh - 17 - vh * 0.46 - 105}px`,
-      "--popup-from-scale": "1",
+      "--popup-from-translate": `${deckX - vw * 0.5 - 160}px ${deckY - vh * restY - 105}px`,
+      "--popup-from-scale": compact ? "0.65" : "1",
       "--popup-from-rotate": `${entryRotate}deg`,
     };
   };
@@ -279,7 +297,7 @@ export function ProjectDeck({
     <div>
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed right-[54px] bottom-[200px] z-[41] -rotate-6 font-hand text-xl text-char-muted transition-opacity duration-300"
+        className="pointer-events-none fixed right-[54px] bottom-[200px] z-[41] hidden -rotate-6 font-hand text-xl text-char-muted transition-opacity duration-300 lg:block"
         style={{ opacity: drawn === null ? 1 : 0 }}
       >
         draw a card ↘
@@ -309,7 +327,7 @@ export function ProjectDeck({
               drawCard(index);
             }
           }}
-          className={`${cardTint(index)} ${CARD_FRAME} fixed right-[-72px] bottom-[-88px] cursor-pointer shadow-paper ${
+          className={`${cardTint(index)} ${CARD_FRAME} project-deck-card fixed right-[-110px] bottom-[-105px] cursor-pointer shadow-paper lg:right-[-72px] lg:bottom-[-88px] ${
             drawn === index ? "invisible" : ""
           }`}
           style={deckCardStyle(index)}
@@ -338,7 +356,7 @@ export function ProjectDeck({
                 moved: false,
               });
             }}
-            className={`${cardTint(shown)} ${CARD_FRAME} paper-popup paper-popup-instant-exit fixed top-[46%] left-1/2 z-[70] shadow-[0_30px_70px_rgba(26,26,26,0.35)] outline-none`}
+            className={`${cardTint(shown)} ${CARD_FRAME} paper-popup paper-popup-instant-exit fixed top-1/2 left-1/2 z-[70] shadow-[0_30px_70px_rgba(26,26,26,0.35)] outline-none lg:top-[46%]`}
             style={drawnCardStyle()}
           >
             <Dialog.Title className="sr-only">

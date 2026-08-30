@@ -133,12 +133,12 @@ export default function Articles() {
           className="absolute bottom-0 left-0 block h-auto w-full"
         />
       </div>
-      <div className="relative z-[1] flex min-h-dvh flex-col items-center justify-center gap-4 p-6">
+      <div className="relative z-[1] flex min-h-dvh flex-col items-center justify-start gap-3 p-3 sm:gap-4 sm:p-6">
         <ToolBar {...{ commonEn, handleToolTrigger, back_ref, next_ref }} />
         {article.source ? (
           <div
             id="article-content-card"
-            className="typst-article w-full rounded-lg border border-line-default bg-paper-bg bg-[url(/assets/design/paper_texture_4k.png)] bg-[length:1200px_auto] bg-blend-multiply p-5 opacity-[0.97] shadow-lift sm:max-w-3/4 lg:max-w-5/8"
+            className="typst-article w-full max-w-[860px] rounded-lg border border-line-default bg-paper-bg bg-[url(/assets/design/paper_texture_4k.png)] bg-[length:1200px_auto] bg-blend-multiply p-4 opacity-[0.97] shadow-lift sm:p-5"
             dangerouslySetInnerHTML={{ __html: article.source }}
           />
         ) : null}

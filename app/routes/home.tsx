@@ -25,6 +25,8 @@ export default function Home() {
   const [inspected, setInspected] = React.useState<number | null>(null);
   // Whether the stardust mascot is mid-spin from a click
   const [spinning, setSpinning] = React.useState<boolean>(false);
+  // Edge photos become an in-page gallery below the desktop breakpoint.
+  const [embeddedPhotos, setEmbeddedPhotos] = React.useState<boolean>(false);
 
   // These React refs are used to modify the DOM to scroll into view for each section
   const about = React.useRef<HTMLElement>(null);
@@ -48,6 +50,19 @@ export default function Home() {
     });
     setSection(item);
   };
+
+  React.useEffect(() => {
+    const media = window.matchMedia("(max-width: 1023px)");
+    const handleLayoutChange = (): void => {
+      setEmbeddedPhotos(media.matches);
+      setInspected(null);
+    };
+    handleLayoutChange();
+    media.addEventListener("change", handleLayoutChange);
+    return () => {
+      media.removeEventListener("change", handleLayoutChange);
+    };
+  }, []);
 
   // Scroll-spy: highlight the tab of the section under the top of the viewport,
   // and put any zoomed photo back once the page scrolls.
@@ -93,37 +108,45 @@ export default function Home() {
           className="absolute bottom-0 left-0 block h-auto w-full"
         />
       </div>
-      <div className="relative z-[1] mx-auto flex min-h-dvh max-w-[920px] flex-col">
-        <nav className="h-24" aria-hidden="true" />
+      <div className="relative z-[1] mx-auto flex min-h-dvh w-full max-w-[920px] flex-col px-2 sm:px-4 lg:px-0">
+        <nav className="h-20 sm:h-24" aria-hidden="true" />
         {/* The paper sheet */}
         <div
-          className="relative flex-1 origin-top rotate-[0.6deg] border border-b-0 border-line-default bg-paper-bg bg-[url(/assets/design/paper_texture_4k.png)] bg-[length:1200px_auto] bg-blend-multiply opacity-[0.97] shadow-lift"
+          className="relative flex-1 origin-top border border-b-0 border-line-default bg-paper-bg bg-[url(/assets/design/paper_texture_4k.png)] bg-[length:1200px_auto] bg-blend-multiply opacity-[0.97] shadow-lift lg:rotate-[0.6deg]"
         >
           <div className="absolute top-0 right-8 -translate-y-full">
             <NavBar {...{ commonEn, section, handleNavTrigger }} />
           </div>
           {/* Polaroids pinned around the sheet edges */}
-          <div className="pointer-events-none absolute inset-0">
+          <div className="pointer-events-none absolute inset-0 hidden lg:block">
             {pinned.map(({ photo, index }) => (
               <PolaroidPhoto
                 key={photo.caption}
                 photo={photo}
-                open={inspected === index}
+                open={!embeddedPhotos && inspected === index}
                 onOpenChange={(open) => setInspected(open ? index : null)}
               />
             ))}
           </div>
-          <main className="relative flex flex-col gap-[72px] px-8 pt-14 pb-20">
+          <main className="relative flex flex-col gap-14 px-4 pt-10 pb-36 sm:px-8 sm:pt-14 sm:pb-28 lg:gap-[72px] lg:pb-20">
             <header
               ref={about}
               id="about"
-              className="grid grid-cols-[5fr_4fr] items-start gap-12"
+              className="grid grid-cols-1 items-start gap-9 md:grid-cols-[5fr_4fr] md:gap-12"
             >
               <div className="flex flex-col gap-8">
-                <h1 className="font-display text-[56px] leading-[1.08] font-normal tracking-[0.01em] text-char-default">
+                <h1 className="font-display text-5xl leading-[1.08] font-normal tracking-[0.01em] text-char-default sm:text-[56px]">
                   I'm Luke<span className="text-paper-red">.</span>
                 </h1>
-                <Callout tone="info" rotate={-3} className="max-w-[280px]">
+                <div className="md:hidden">
+                  <p className="mb-3.5 text-pretty text-char-default">
+                    {commonEn.introduction[0]}
+                  </p>
+                  <p className="text-pretty text-char-muted">
+                    {commonEn.introduction[1]}
+                  </p>
+                </div>
+                <Callout tone="info" rotate={-3} className="w-full max-w-[280px]">
                   <h3 className="mb-2 font-display text-[15px] font-normal">
                     Technical interests
                   </h3>
@@ -133,7 +156,7 @@ export default function Home() {
                     ))}
                   </ul>
                 </Callout>
-                <div className="flex items-end justify-end gap-6">
+                <div className="flex flex-wrap items-end justify-center gap-6 sm:justify-end">
                   {inline.map(({ photo, index }) => (
                     <PolaroidPhoto
                       key={photo.caption}
@@ -144,15 +167,17 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div className="pt-3.5">
-                <p className="mb-3.5 text-pretty text-char-default">
-                  {commonEn.introduction[0]}
-                </p>
-                <p className="text-pretty text-char-muted">
-                  {commonEn.introduction[1]}
-                </p>
-                <div className="h-14" />
-                <Callout tone="warning" rotate={2} className="max-w-[280px]">
+              <div className="pt-0 md:pt-3.5">
+                <div className="hidden md:block">
+                  <p className="mb-3.5 text-pretty text-char-default">
+                    {commonEn.introduction[0]}
+                  </p>
+                  <p className="text-pretty text-char-muted">
+                    {commonEn.introduction[1]}
+                  </p>
+                  <div className="h-14" />
+                </div>
+                <Callout tone="warning" rotate={2} className="w-full max-w-[280px]">
                   <h3 className="mb-2 font-display text-base font-normal">
                     Recommended books
                   </h3>
@@ -162,8 +187,8 @@ export default function Home() {
                     ))}
                   </ul>
                 </Callout>
-                <div className="relative h-0 overflow-visible">
-                  <div className="absolute top-11 left-0 flex items-start gap-3.5">
+                <div className="relative mt-7 h-32 overflow-visible md:mt-0 md:h-0">
+                  <div className="absolute top-0 left-0 flex items-start gap-3.5 md:top-11">
                     <img
                       src="/assets/site/stardust.png"
                       alt="stardust, the site mascot"
@@ -172,7 +197,7 @@ export default function Home() {
                         setSpinning(true);
                         setTimeout(() => setSpinning(false), 950);
                       }}
-                      className="pointer-events-auto mt-[26px] h-auto w-[88px] cursor-pointer"
+                      className="pointer-events-auto mt-[26px] h-auto w-[72px] shrink-0 cursor-pointer sm:w-[88px]"
                       style={{
                         // A full turn while spinning; 356deg ≡ -4deg, so with the
                         // transition off the snap back to rest is invisible.
@@ -182,7 +207,7 @@ export default function Home() {
                         transform: `rotate(${spinning ? 356 : -4}deg)`,
                       }}
                     />
-                    <span className="relative inline-block max-w-[220px] -rotate-2 font-hand text-[17px] text-char-muted">
+                    <span className="relative inline-block max-w-[190px] -rotate-2 font-hand text-base text-char-muted sm:max-w-[220px] sm:text-[17px]">
                       <span
                         className="inline-block transition-opacity duration-250"
                         style={{ opacity: spinning ? 0 : 1 }}
@@ -200,9 +225,22 @@ export default function Home() {
                 </div>
               </div>
             </header>
+            <div
+              className="flex flex-wrap items-end justify-center gap-8 lg:hidden"
+              aria-label="Photo gallery"
+            >
+              {pinned.map(({ photo, index }) => (
+                <PolaroidPhoto
+                  key={photo.caption}
+                  photo={{ ...photo, inline: true }}
+                  open={embeddedPhotos && inspected === index}
+                  onOpenChange={(open) => setInspected(open ? index : null)}
+                />
+              ))}
+            </div>
             <section ref={articles} id="articles">
-              <div className="mb-2 flex items-baseline gap-3.5 border-b border-line-default pb-2">
-                <h2 className="font-display text-[32px] leading-none font-normal text-char-default">
+              <div className="mb-2 flex flex-col items-start gap-1 border-b border-line-default pb-2 sm:flex-row sm:items-baseline sm:gap-3.5">
+                <h2 className="font-display text-[30px] leading-none font-normal text-char-default sm:text-[32px]">
                   Articles
                 </h2>
                 <span className="text-sm text-char-faint">
@@ -218,7 +256,7 @@ export default function Home() {
             <footer
               ref={contacts}
               id="contacts"
-              className="flex flex-wrap items-baseline gap-6 border-t border-line-default pt-7"
+              className="flex flex-col items-start gap-4 border-t border-line-default pt-7 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-6"
             >
               <span className="font-display text-2xl text-char-default">
                 Say hello
@@ -230,7 +268,7 @@ export default function Home() {
                   </a>
                 ))}
               </div>
-              <span className="ml-auto text-xs text-char-faint">
+              <span className="text-xs text-char-faint sm:ml-auto">
                 - luke taylor says hi
               </span>
             </footer>

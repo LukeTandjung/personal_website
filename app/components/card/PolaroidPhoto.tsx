@@ -39,10 +39,16 @@ export function PolaroidPhoto({
       const rect = figure.current.getBoundingClientRect();
       const vw = window.innerWidth;
       const vh = window.innerHeight;
+      const mobile = vw < 640;
+      const viewportGutter = mobile ? 32 : 120;
       setZoom({
-        width: Math.min(photo.width * 3.2, vw - 120, (vh - 120) * 0.8),
+        width: Math.min(
+          photo.width * 3.2,
+          Math.max(1, vw - viewportGutter),
+          Math.max(1, (vh - viewportGutter) * 0.8),
+        ),
         dx: rect.left + rect.width / 2 - vw * 0.5,
-        dy: rect.top + rect.height / 2 - vh * 0.46,
+        dy: rect.top + rect.height / 2 - vh * (mobile ? 0.5 : 0.46),
       });
     } else {
       setClosing(true);
@@ -80,10 +86,12 @@ export function PolaroidPhoto({
             className={`pointer-events-auto m-0 cursor-zoom-in ${open || closing ? "invisible" : ""}`}
             style={{
               position: photo.inline === true ? "relative" : "absolute",
-              top: photo.position?.top,
-              left: photo.position?.left,
-              right: photo.position?.right,
+              top: photo.inline === true ? undefined : photo.position?.top,
+              left: photo.inline === true ? undefined : photo.position?.left,
+              right: photo.inline === true ? undefined : photo.position?.right,
               width: `${photo.width}px`,
+              maxWidth:
+                photo.inline === true ? "calc(100vw - 4rem)" : undefined,
               alignSelf: photo.inline === true ? "flex-end" : undefined,
               transform: `rotate(${photo.rotate}deg)`,
             }}
@@ -101,7 +109,7 @@ export function PolaroidPhoto({
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-[60] cursor-zoom-out" />
         <Dialog.Popup
-          className="paper-popup fixed top-[46%] left-1/2 z-[70] cursor-zoom-out outline-none"
+          className="paper-popup fixed top-1/2 left-1/2 z-[70] cursor-zoom-out outline-none sm:top-[46%]"
           style={popupStyle}
           onClick={() => onOpenChange(false)}
         >

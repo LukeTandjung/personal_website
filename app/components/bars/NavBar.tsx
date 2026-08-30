@@ -23,7 +23,7 @@ export function NavBar({
         if (item != null) handleNavTrigger(item);
       }}
     >
-      <Tabs.List className="flex items-end gap-[3px] px-2 font-mono text-[13px]">
+      <Tabs.List className="flex items-end gap-[3px] px-1 font-mono text-[13px] sm:px-2">
         {commonEn.nav.map((item: Section) => (
           <Tabs.Tab
             key={item.name}
@@ -33,10 +33,10 @@ export function NavBar({
               Match.when("articles", () => "bg-tint-blue"),
               Match.when("contacts", () => "bg-tint-green"),
               Match.exhaustive,
-            )} texture-grain cursor-pointer rounded-tab border border-line-default text-char-default transition-all hover:pt-2 hover:pb-[7px] hover:opacity-100 ${
+            )} texture-grain min-h-11 cursor-pointer rounded-tab border border-line-default text-char-default transition-all hover:opacity-100 sm:min-h-0 sm:hover:pt-2 sm:hover:pb-[7px] ${
               section.name === item.name
-                ? "-mb-px border-b-transparent px-[18px] pt-2 pb-[7px] font-bold opacity-100 shadow-[0_-1px_2px_rgba(85,85,85,0.1)]"
-                : "px-3.5 pt-[5px] pb-1 font-normal opacity-75"
+                ? "-mb-px border-b-transparent px-4 pt-2 pb-[7px] font-bold opacity-100 shadow-[0_-1px_2px_rgba(85,85,85,0.1)] sm:px-[18px]"
+                : "px-3 pt-[5px] pb-1 font-normal opacity-75 sm:px-3.5"
             }`}
           >
             {item.name}

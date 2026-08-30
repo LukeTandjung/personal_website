@@ -139,6 +139,10 @@
   visibility: hidden;
 }
 
+.project-deck-card {
+  --project-deck-scale: 1;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -172,6 +176,8 @@ a:hover {
 
 .typst-article {
   width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: var(--color-char-default);
   font-family: var(--article-font-body);
   font-size: var(--article-body-size);
@@ -226,6 +232,7 @@ a:hover {
 
 .typst-article figure {
   display: flex;
+  margin-inline: 0;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
@@ -269,6 +276,15 @@ a:hover {
 .typst-article table {
   width: 100%;
   border-collapse: collapse;
+}
+
+.typst-article pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.typst-article code {
+  overflow-wrap: normal;
 }
 
 .typst-article th,
@@ -376,4 +392,39 @@ a:hover {
 .typst-frame {
   max-width: 100%;
   height: auto;
+}
+
+@media (max-width: 1023px) {
+  .project-deck-card {
+    --project-deck-scale: 0.65;
+  }
+}
+
+@media (max-width: 639px) {
+  .typst-article .typst-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .typst-article table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .typst-article th,
+  .typst-article td {
+    min-width: 8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .paper-popup,
+  .paper-popup[data-starting-style],
+  .paper-popup[data-ending-style] {
+    transition: none;
+  }
 }
