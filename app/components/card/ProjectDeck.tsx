@@ -73,7 +73,17 @@ function CardFace({
           </div>
           {card.project_url != null ? (
             <div className="mt-auto font-display text-base text-char-muted">
-              {card.project_url}
+              <a
+                href={card.project_url}
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-line-default underline-offset-4 hover:text-char-default"
+                // Keep the deck's drag/return handlers from swallowing the click.
+                onPointerDown={(event) => event.stopPropagation()}
+                onKeyDown={(event) => event.stopPropagation()}
+              >
+                link
+              </a>
             </div>
           ) : null}
         </div>

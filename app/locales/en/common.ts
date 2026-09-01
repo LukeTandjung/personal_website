@@ -38,7 +38,7 @@ export const commonEn: Common = {
       status: "live",
       image_url: "/assets/site/logos/rstful.png",
       description: "An agentic RSS reader — your antivirus from the internet.",
-      project_url: "rstful.com",
+      project_url: "https://rstful.com",
     },
     {
       name: "Ariadne",
@@ -46,7 +46,7 @@ export const commonEn: Common = {
       image_url: "/assets/site/logos/ariadne.png",
       description:
         "The agent SDK that threads your agents out of the labyrinth.",
-      project_url: "github/ariadne",
+      project_url: "https://github.com/LukeTandjung/ariadne",
     },
     {
       name: "Base GPUI",
@@ -54,14 +54,14 @@ export const commonEn: Common = {
       image_url: "/assets/site/logos/base-gpui.png",
       description:
         "Base UI's headless component APIs, ported natively to GPUI.",
-      project_url: "github/base-gpui",
+      project_url: "https://github.com/LukeTandjung/base-gpui",
     },
     {
       name: "Neosicht",
       status: "live",
       image_url: "/assets/site/logos/neosicht.png",
       description: "A themeable, GPUI-native desktop shell bar for macOS.",
-      project_url: "brew install --cask neosicht",
+      project_url: "https://github.com/LukeTandjung/neosicht",
     },
   ],
   photos: [
